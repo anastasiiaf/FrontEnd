@@ -3,7 +3,7 @@
     <head>
         <title>My CV</title>
         <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        
 
     </head> 
 
@@ -13,8 +13,9 @@
             height: 150px;
             background-image: url("camomile.jpeg");
             color:aliceblue;
-            position:fixed;
+            position:absolute;
             left: 0px;
+          
             }
             
         #test2{
@@ -22,8 +23,9 @@
             height: 150px;
             background-image: url("rose.jpeg");
             color:rgb(131, 180, 202);
-            position:fixed;
+            position:absolute;
             left: 150px;
+            
             } 
         
         #test3{
@@ -31,8 +33,9 @@
             height: 150px;
             background-image: url("tulips.jpeg");
             color:rgb(251, 252, 253);
-            position:fixed;
+            position:absolute;
             left: 300px;
+            
             } 
         
         #test4{
@@ -40,14 +43,15 @@
             height: 150px;
             background-image: url("peach.jpeg");
             color:rgb(131, 180, 202);
-            position:fixed;
+            position:absolute;
             left: 450px;
+        
             }
 
         #about{
             width: 150px;
             height: 150px;
-            position:fixed;
+            position:absolute;
             left: 10px;
             top: 200px;
             }  
@@ -55,7 +59,7 @@
         #cv{
             width: 150px;
             height: 150px;
-            position:fixed;
+            position:absolute;
             left: 10px;
             top: 400px;
             }  
@@ -63,17 +67,19 @@
         #more{
             width: 150px;
             height: 150px;
-            position:fixed;
+            position:absolute;
             left: 10px;
             top: 600px;
+            
             }  
 
         #contact{
             width: 150px;
             height: 150px;
-            position:fixed;
+            position:absolute;
             left: 10px;
             top: 800px;
+            
             }           
 
 
@@ -82,16 +88,16 @@
     </style>
 
     <body>
-        <div id="test">First header</div>
-        <div id="test2">Second header</div>
-        <div id="test3">Third header</div>
-        <div id="test4">Fourth header</div>
+        <div id="test"><a href="#about" style="color: rgb(166, 175, 172);">First header</a></div>
+        <div id="test2"><a href="#cv" style="color:  rgb(166, 175, 172);">Second header</a></div>
+        <div id="test3"><a href="#more" style="color: rgb(166, 175, 172);">Third header</a></div>
+        <div id="test4"><a href="#contact" style="color: rgb(166, 175, 172);">Fourth header</a></div>
 
 
-        <div id="about">About</div>
-        <div id="cv">CV</div>
-        <div id="more">More</div>
-        <div id="contact">Contact</div>
+        <p id="about">About</p>
+        <p id="cv">CV</p>
+        <p id="more">More</p>
+        <p id="contact">Contact</p>
 
 
 
