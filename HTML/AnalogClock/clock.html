@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Analogue Clock</title>
+    <meta
+      name="viewpoint"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"
+    />
+
+    <style>
+      #Clock {
+        border: 1px solid grey;
+      }
+    </style>
+  </head>
+
+  <body>
+    <canvas id="Clock" width="500" height="500"> </canvas>
+
+    <script>
+      var myClock = document.getElementById('Clock');
+      var context = myClock.getContext('2d');
+      var date;
+      var centerX = 250;
+      var centerY = 250;
+      var baseX = 250;
+      var baseY = 100;
+      var handX;
+      var handY;
+      var values;
+      var i = 1;
+
+      function drawClockLine(centerX, centerY, baseX, baseY, angleHand) {
+        var vectorLength;
+        var dotProduct;
+        vectorLength = Math.sqrt((baseX - centerX) ** 2 + (baseY - centerY) ** 2);
+        dotProduct = vectorLength ** 2 * Math.cos(angleHand);
+        //secondsX = Math.sin(angleSeconds);
+        //secondsY = Math.cos(angleSeconds);
+        //secondsX = centerX + 220 * Math.cos(angleSeconds);
+        //secondsY = centerY + 220 * Math.sin(angleSeconds);
+        handY = dotProduct / (baseY - centerY) + centerY;
+        handX = Math.sqrt(vectorLength ** 2 - (handY - centerY) ** 2) + centerX;
+        return [handX, handY];
+      }
+
+      function unitCheck(timeUnitString, timeUnit) {
+        var t;
+        if (timeUnitString == 'seconds' || timeUnitString == 'minutes') {
+          t = 30;
+        } else {
+          t = 6;
+        }
+        return t;
+      }
+
+      function handStyling(
+        centerX,
+        centerY,
+        handX,
+        handY,
+        baseX,
+        timeUnitString,
+        timeUnit,
+        handWidth,
+      ) {
+        var t = unitCheck(timeUnitString, timeUnit);
+        context.beginPath();
+        context.moveTo(centerX, centerY);
+        if (timeUnit > t) {
+          context.lineTo(handX - (handX - baseX) * 2, handY);
+        } else {
+          context.lineTo(handX, handY);
+        }
+        context.strokeStyle = 'white';
+        context.lineWidth = handWidth;
+        context.stroke();
+        context.closePath();
+      }
+
+      function drawTimeUnitLine(
+        centerX,
+        centerY,
+        baseX,
+        baseY,
+        timeUnit,
+        angleHand,
+        timeUnitString,
+        handWidth,
+      ) {
+        values = drawClockLine(centerX, centerY, baseX, baseY, angleHand);
+        handX = values[0];
+        handY = values[1];
+
+        handStyling(centerX, centerY, handX, handY, baseX, timeUnitString, timeUnit, handWidth);
+      }
+
+      function drawFace() {
+        context.beginPath();
+        context.arc(centerX, centerY, 220, 0, 2 * Math.PI);
+        context.fillStyle = 'black';
+        context.fill();
+        context.stroke();
+        context.closePath();
+
+        /*var slice = (2 * Math.PI) / 60;
+        var angleMinutes = 0;
+        for (angleMinutes; angleMinutes <= 2 * Math.PI; angleMinutes += slice) {
+          //alert(angleMinutes);
+          var values2 = drawClockLine(centerX, centerY, baseX, baseY, angleMinutes);
+          var handX2 = values2[0];
+          var handY2 = values2[1];
+          context.beginPath();
+          context.moveTo(centerX, centerY);
+          context.lineTo(handX2, handY2);
+          context.strokeStyle = 'white';
+          context.lineWidth = 1;
+          context.stroke();
+          context.closePath();
+        }*/
+      }
+
+      function drawClock() {
+        setTimeout(function () {
+          date = new Date();
+          //draw circle
+          drawFace();
+
+          drawTimeUnitLine(
+            centerX,
+            centerY,
+            baseX,
+            baseY,
+            date.getSeconds(),
+            2 * Math.PI * (date.getSeconds() / 60),
+            'seconds',
+            1,
+          );
+
+          drawTimeUnitLine(
+            centerX,
+            centerY,
+            baseX,
+            baseY + 15,
+            date.getMinutes(),
+            2 * Math.PI * (date.getMinutes() / 60),
+            'minutes',
+            2,
+          );
+          drawTimeUnitLine(
+            centerX,
+            centerY,
+            baseX,
+            baseY + 30,
+            date.getHours() % 12 || 12,
+            2 * Math.PI * ((date.getHours() % 12 || 12) / 12),
+            'hours',
+            3,
+          );
+
+          i++;
+          if (i < Infinity) {
+            drawClock();
+          }
+        }, 1000);
+      }
+
+      drawClock();
+      //drawFace();
+    </script>
+  </body>
+</html>
