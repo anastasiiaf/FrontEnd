@@ -103,21 +103,50 @@
         context.stroke();
         context.closePath();
 
-        /*var slice = (2 * Math.PI) / 60;
+        context.beginPath();
+        context.arc(centerX, centerY, 5, 0, 2 * Math.PI);
+        context.fillStyle = 'white';
+        context.fill();
+        context.stroke();
+        context.closePath();
+
+        var slice = (2 * Math.PI) / 60;
         var angleMinutes = 0;
+        var j = 0;
         for (angleMinutes; angleMinutes <= 2 * Math.PI; angleMinutes += slice) {
-          //alert(angleMinutes);
-          var values2 = drawClockLine(centerX, centerY, baseX, baseY, angleMinutes);
+          var values2 = drawClockLine(centerX, centerY, baseX, baseY - 40, angleMinutes);
           var handX2 = values2[0];
           var handY2 = values2[1];
+          var length;
+          if (j % 5 == 0) {
+            length = 25;
+          } else {
+            length = 15;
+          }
+          console.log(length);
+          j++;
+
           context.beginPath();
-          context.moveTo(centerX, centerY);
-          context.lineTo(handX2, handY2);
+
+          if (angleMinutes > Math.PI) {
+            context.moveTo(handX2 - (handX2 - baseX) * 2, handY2);
+            context.lineTo(
+              handX2 - (handX2 - baseX) * 2 - length * Math.sin(angleMinutes),
+              handY2 + length * Math.cos(angleMinutes),
+            );
+          } else {
+            context.moveTo(handX2, handY2);
+            context.lineTo(
+              handX2 - length * Math.sin(angleMinutes),
+              handY2 + length * Math.cos(angleMinutes),
+            );
+          }
+
           context.strokeStyle = 'white';
           context.lineWidth = 1;
           context.stroke();
           context.closePath();
-        }*/
+        }
       }
 
       function drawClock() {
