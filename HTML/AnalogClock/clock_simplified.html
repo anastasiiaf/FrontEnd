@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Analogue Clock</title>
+    <meta
+      name="viewpoint"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"
+    />
+  </head>
+
+  <body>
+    <canvas id="Clock" width="500" height="500"> </canvas>
+
+    <script>
+      var myClock = document.getElementById('Clock');
+      var context = myClock.getContext('2d');
+
+      function drawClock() {
+        var date;
+        var radius = myClock.width / 2;
+
+        context.beginPath();
+        context.arc(radius, radius, radius, 0, 2 * Math.PI);
+        context.fillStyle = 'black';
+        context.fill();
+        context.stroke();
+        context.closePath();
+
+        context.beginPath();
+        context.arc(radius, radius, 5, 0, 2 * Math.PI);
+        context.fillStyle = 'white';
+        context.fill();
+        context.stroke();
+        context.closePath();
+
+        context.beginPath();
+        context.fillStyle = 'white';
+        context.font = '20px Arial';
+        context.fillText('Clever solution 😎', 160, 170);
+        context.closePath();
+
+        var date = new Date();
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var seconds = date.getSeconds();
+        var fullhours = (hours % 12) + minutes / 60 + seconds / 3600;
+        var hoursAngle = (2 * Math.PI * fullhours) / 12;
+        var minutesAngle = (2 * Math.PI * minutes) / 60;
+        var secondsAngle = (2 * Math.PI * seconds) / 60;
+
+        var slice = (2 * Math.PI) / 60;
+        var angle = 0;
+        var j = 0;
+        var length;
+        for (angle = 0; angle <= 2 * Math.PI; angle += slice) {
+          var x = radius - 0.85 * radius * Math.sin(angle);
+          var y = radius + 0.85 * radius * Math.cos(angle);
+          if (j % 5 == 0) {
+            length = 25;
+          } else {
+            length = 15;
+          }
+          j++;
+          context.beginPath();
+          context.moveTo(x, y);
+          context.lineTo(x - length * Math.sin(angle), y + length * Math.cos(angle));
+          context.strokeStyle = 'white';
+          context.lineWidth = 1;
+          context.stroke();
+          context.closePath();
+        }
+
+        context.beginPath();
+        context.moveTo(radius, radius);
+        context.lineTo(
+          radius + 0.6 * radius * Math.sin(hoursAngle),
+          radius - 0.6 * radius * Math.cos(hoursAngle),
+        );
+        context.strokeStyle = 'white';
+        context.lineWidth = 3;
+        context.stroke();
+        context.closePath();
+
+        context.beginPath();
+        context.moveTo(radius, radius);
+        context.lineTo(
+          radius + 0.7 * radius * Math.sin(minutesAngle),
+          radius - 0.7 * radius * Math.cos(minutesAngle),
+        );
+        context.strokeStyle = 'white';
+        context.lineWidth = 2;
+        context.stroke();
+        context.closePath();
+
+        context.beginPath();
+        context.moveTo(radius, radius);
+        context.lineTo(
+          radius + 0.8 * radius * Math.sin(secondsAngle),
+          radius - 0.8 * radius * Math.cos(secondsAngle),
+        );
+        context.strokeStyle = 'white';
+        context.lineWidth = 1;
+        context.stroke();
+        context.closePath();
+      }
+
+      setInterval(drawClock, 1000);
+    </script>
+  </body>
+</html>

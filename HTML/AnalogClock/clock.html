@@ -7,11 +7,7 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"
     />
 
-    <style>
-      #Clock {
-        border: 1px solid grey;
-      }
-    </style>
+    <style></style>
   </head>
 
   <body>
@@ -97,7 +93,7 @@
 
       function drawFace() {
         context.beginPath();
-        context.arc(centerX, centerY, 220, 0, 2 * Math.PI);
+        context.arc(centerX, centerY, myClock.width / 2, 0, 2 * Math.PI);
         context.fillStyle = 'black';
         context.fill();
         context.stroke();
@@ -110,11 +106,17 @@
         context.stroke();
         context.closePath();
 
+        context.beginPath();
+        context.fillStyle = 'white';
+        context.font = '20px Arial';
+        context.fillText('My complex solution 🤔', 150, 170);
+        context.closePath();
+
         var slice = (2 * Math.PI) / 60;
         var angleMinutes = 0;
         var j = 0;
         for (angleMinutes; angleMinutes <= 2 * Math.PI; angleMinutes += slice) {
-          var values2 = drawClockLine(centerX, centerY, baseX, baseY - 40, angleMinutes);
+          var values2 = drawClockLine(centerX, centerY, baseX, baseY - 80, angleMinutes);
           var handX2 = values2[0];
           var handY2 = values2[1];
           var length;
@@ -154,6 +156,8 @@
           date = new Date();
           //draw circle
           drawFace();
+          var fullhours =
+            (date.getHours() % 12) + date.getMinutes() / 60 + date.getSeconds() / 3600;
 
           drawTimeUnitLine(
             centerX,
@@ -181,8 +185,8 @@
             centerY,
             baseX,
             baseY + 30,
-            date.getHours() % 12 || 12,
-            2 * Math.PI * ((date.getHours() % 12 || 12) / 12),
+            fullhours,
+            2 * Math.PI * (fullhours / 12),
             'hours',
             3,
           );
