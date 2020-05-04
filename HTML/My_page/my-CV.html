@@ -39,7 +39,7 @@
     }
     .container {
       margin: 0 auto;
-      height: 80%;
+      height: 100%;
       position: relative;
       background-color: black;
       opacity: 0.7;
@@ -58,29 +58,45 @@
       font-size: 20px;
       font-weight: normal;
     }
+    a {
+      text-decoration: none;
+      color: black;
+    }
+    a:hover {
+      text-decoration: underline;
+      color: violet;
+    }
   </style>
 
   <body>
     <!---->
     <div id="top-menu">
-      <div class="menu-bar">About</div>
-      <div class="menu-bar">CV</div>
-      <div class="menu-bar">Skills</div>
-      <div class="menu-bar">Projects</div>
-      <div class="menu-bar">Contact</div>
+      <div class="menu-bar"><a href="#about">About</a></div>
+      <div class="menu-bar"><a href="#cv">CV</a></div>
+      <div class="menu-bar"><a href="#skills">Skills</a></div>
+      <div class="menu-bar"><a href="#projects">Projects</a></div>
+      <div class="menu-bar"><a href="#contact">Contact</a></div>
     </div>
     <!--<div class="clear"></div>
     -->
     <div class="container">
-      <h3>About</h3>
+      <h3 id="about">About</h3>
       <div class="text"><p>Put something here</p></div>
     </div>
     <div class="container">
-      <h3>CV</h3>
+      <h3 id="cv">CV</h3>
       <div class="text"><p>Put something here</p></div>
     </div>
     <div class="container">
-      <h3>Skills</h3>
+      <h3 id="skills">Skills</h3>
+      <div class="text"><p>Put something here</p></div>
+    </div>
+    <div class="container">
+      <h3 id="projects">Projects</h3>
+      <div class="text"><p>Put something here</p></div>
+    </div>
+    <div class="container">
+      <h3 id="contact">Contact</h3>
       <div class="text"><p>Put something here</p></div>
     </div>
   </body>
