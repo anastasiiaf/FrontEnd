@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bouncing bubble</title>
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <style type="text/css">
+    #field {
+      width: 600px;
+      height: 600px;
+      border-width: 3px;
+      border-style: solid;
+      border-color: grey;
+    }
+
+    #bubble {
+      height: 50px;
+      width: 50px;
+      background-color: honeydew;
+      border-radius: 50%;
+      position: relative;
+      animation-name: element;
+      animation-duration: 5s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease;
+    }
+
+    @keyframes element {
+      0% {
+        background-color: green;
+        left: 0px;
+        top: 0px;
+      }
+      25% {
+        background-color: yellow;
+        left: 550px;
+        top: 550px;
+      }
+      50% {
+        background-color: orange;
+        left: 550px;
+        top: 0px;
+      }
+      75% {
+        background-color: yellow;
+        left: 0px;
+        top: 550px;
+      }
+      100% {
+        background-color: green;
+        left: 0px;
+        top: 0px;
+      }
+    }
+  </style>
+
+  <body>
+    <div id="field">
+      <div id="bubble"></div>
+    </div>
+  </body>
+</html>
