@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bouncing bubble</title>
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <style type="text/css">
+    #field {
+      width: 600px;
+      height: 600px;
+      border-width: 3px;
+      border-style: solid;
+      border-color: grey;
+      position: fixed;
+    }
+
+    #bubble {
+      height: 50px;
+      width: 50px;
+      background-color: purple;
+      border-radius: 50%;
+      position: absolute;
+    }
+  </style>
+
+  <body>
+    <div id="field">
+      <div id="bubble"></div>
+    </div>
+
+    <script>
+      var bubble = document.getElementById('bubble');
+      var field = document.getElementById('field');
+
+      var posLeft;
+      var posTop;
+      var i = 0;
+      var curPosTop;
+      var curPosLeft;
+      var stop = true;
+
+      function randomPosition() {
+        return Math.round(
+          Math.random() * (field.offsetWidth + 6 - bubble.offsetWidth) + bubble.offsetWidth,
+        );
+      }
+
+      function checkCoordinates(currentPos, newPos) {
+        if (newPos > currentPos) {
+          return (currentPos = currentPos + 1);
+        } else if (newPos == currentPos) {
+          return currentPos;
+        } else {
+          return (currentPos = currentPos - 1);
+        }
+      }
+
+      function game() {
+        setTimeout(function () {
+          var curPosTop = bubble.offsetTop;
+          var curPosLeft = bubble.offsetLeft;
+
+          console.log(posLeft, posTop);
+
+          curPosTop = checkCoordinates(curPosTop, posTop);
+          curPosLeft = checkCoordinates(curPosLeft, posLeft);
+          bubble.style.top = curPosTop + 'px';
+          bubble.style.left = curPosLeft + 'px';
+          i++;
+          if (i < Math.max(posLeft, posTop)) {
+            game();
+          } else {
+            posLeft = randomPosition();
+            posTop = randomPosition();
+            i = Math.min(posLeft, posTop);
+            game();
+          }
+        }, 30);
+      }
+
+      posLeft = randomPosition();
+      posTop = randomPosition();
+      game();
+    </script>
+  </body>
+</html>
