@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+  <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Submission form</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+  </head>
+  <body>
+    <h1>Register</h1>
+
+    <form>
+      <label for="name">First name: </label>
+      <input id="name" name="name" type="text" placeholder="Anastasiia" required />
+      <label for="surname">Last name: </label>
+      <input id="surname" name="surname" type="text" placeholder="Filchenko" required />
+      <br /><br />
+      <label for="male">Male</label>
+      <input id="male" type="radio" name="gender" value="male" />
+      <label for="female">Female</label>
+      <input id="female" type="radio" name="gender" value="female" />
+      <label for="other">Other</label>
+      <input id="other" type="radio" name="gender" value="other" />
+      <br /><br />
+      <label for="email">Email: </label>
+      <input type="email" name="email" id="email" placeholder="your email" required />
+      <label for="password">Password: </label>
+      <input type="password" name="password" id="password" placeholder="your password" required />
+      <br />
+      <br />
+      <label for="birthdate">Birthdate: </label>
+      <input id="birthdate" type="date" name="birthdate" />
+      <br /><br />
+      <label for="status">Civil status: </label>
+      <select name="status" id="status">
+        <option value="" selected disabled hidden>Select</option>
+        <option value="Married">Married</option>
+        <option value="Single">Single</option>
+      </select>
+      <br /><br />
+      <label for="terms">I agree to terms and conditions </label>
+      <input id="terms" type="checkbox" name="terms" required />
+      <br /><br />
+      <input type="submit" />
+    </form>
+  </body>
+</html>
