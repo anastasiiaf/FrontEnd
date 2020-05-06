@@ -32,7 +32,15 @@
       <label for="email">Email: </label>
       <input type="email" name="email" id="email" placeholder="your email" required />
       <label for="password">Password: </label>
-      <input type="password" name="password" id="password" placeholder="your password" required />
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="your password"
+        pattern=".{4,6}"
+        title="4 to 6 characters"
+        required
+      />
       <br />
       <br />
       <label for="birthdate">Birthdate: </label>
