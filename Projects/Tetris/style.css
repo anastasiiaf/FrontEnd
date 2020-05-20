@@ -1,14 +1,15 @@
-.grid {
-  width: 200px;
-  height: 400px;
+.grid-setup {
+  width: 600px;
+  height: 500px;
   display: flex;
   flex-wrap: wrap;
   background-color: yellow;
 }
 
-.grid div {
+.square {
   width: 20px;
   height: 20px;
+  /*border: 0.01px solid black; */
 }
 
 .tetromino {
