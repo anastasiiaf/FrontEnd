@@ -6,6 +6,14 @@
   background-color: yellow;
 }
 
+.show-next-grid {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: orange;
+}
+
 .square {
   width: 20px;
   height: 20px;
