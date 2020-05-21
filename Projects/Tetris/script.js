@@ -3,52 +3,107 @@ document.addEventListener('DOMContentLoaded', () => {
   let showNextGridContainer = document.getElementById('#next-grid');
   const scoreDisplay = document.getElementById('#score');
   const startBtn = document.getElementById('#startBtn');
-  //let width = 30;
+  const gridSizeBtn = document.getElementById('#gridSizeBtn');
+  const cellSizeBtn = document.getElementById('#cellSizeBtn');
+
+  cellSizeBtn.disabled = true;
+  startBtn.disabled = true;
+
   let grid = [];
-  let displayNextGrid = [];
-  let positionInfo = gridContainer.getBoundingClientRect();
-  let gridHeight = positionInfo.height;
-  let gridWidth = positionInfo.width;
+  //let positionInfo = gridContainer.getBoundingClientRect();
+  //let gridHeight = positionInfo.height;
+  //let gridWidth = positionInfo.width;
+  const colors = ['orange', 'purple'];
 
-  //const height = Math.floor(gridHeight / 20);
-  const width = createGrid();
-  //console.log(gridWidth, gridHeight, width);
-
-  //let nextRandom = 0;
+  let gridSizeClicks = 0;
+  let cellSizeClicks = 0;
+  let gridWidth;
+  let gridHeight;
+  let cellWidth;
+  let cellHeight;
+  let width;
   let timerId;
   let score = 0;
 
   // Tetrominoes
-  const lTetromino = [
-    [1, width + 1, width * 2 + 1, 2],
-    [width, width + 1, width + 2, width * 2 + 2],
-    [1, width + 1, width * 2 + 1, width * 2],
-    [width, width * 2, width * 2 + 1, width * 2 + 2],
-  ];
+  let lTetromino = [];
+  let oTetromino = [];
+  let theTetrominoes = [lTetromino, oTetromino];
+  let currentPosition;
+  let currentRotation;
+  let random;
+  let nextRandom = 0;
+  let current;
 
-  const oTetromino = [
-    [1, 2, width + 1, width + 2],
-    [1, 2, width + 1, width + 2],
-    [1, 2, width + 1, width + 2],
-    [1, 2, width + 1, width + 2],
-  ];
-
-  const theTetrominoes = [lTetromino, oTetromino];
-
-  let currentPosition = Math.floor(width / 2);
-  let currentRotation = 0;
-  let random = Math.floor(Math.random() * theTetrominoes.length);
-  let current = theTetrominoes[random][currentRotation];
-
-  const displayWidth = showNextGrid();
+  let displayNextGrid = [];
+  const displayWidth = 4;
   let displayTetrominoes = [
     [1, displayWidth + 1, displayWidth * 2 + 1, 2],
     [1, 2, displayWidth + 1, displayWidth + 2],
   ];
-  let displayIndex = displayWidth;
+  const displayIndex = displayWidth;
+
+  gridSizeBtn.addEventListener('click', () => {
+    if (gridSizeClicks < 3) {
+      gridSizeClicks++;
+    } else {
+      gridSizeClicks = 1;
+    }
+
+    if (gridSizeClicks === 1) {
+      gridWidth = 500;
+      gridHeight = 400;
+      gridContainer.style.width = gridWidth + 'px';
+      gridContainer.style.height = gridHeight + 'px';
+      gridSizeBtn.textContent = 'Small';
+    } else if (gridSizeClicks === 2) {
+      gridWidth = 600;
+      gridHeight = 500;
+      gridContainer.style.width = gridWidth + 'px';
+      gridContainer.style.height = gridHeight + 'px';
+      gridSizeBtn.textContent = 'Medium';
+    } else if (gridSizeClicks === 3) {
+      gridWidth = 700;
+      gridHeight = 600;
+      gridContainer.style.width = gridWidth + 'px';
+      gridContainer.style.height = gridHeight + 'px';
+      gridSizeBtn.textContent = 'Big';
+    }
+    cellSizeBtn.disabled = false;
+  });
+
+  cellSizeBtn.addEventListener('click', () => {
+    if (cellSizeClicks < 3) {
+      cellSizeClicks++;
+    } else {
+      cellSizeClicks = 1;
+    }
+
+    if (cellSizeClicks === 1) {
+      cellWidth = 10;
+      cellHeight = 10;
+      cellSizeBtn.textContent = 'Small';
+    } else if (cellSizeClicks === 2) {
+      cellWidth = 15;
+      cellHeight = 15;
+      cellSizeBtn.textContent = 'Medium';
+    } else if (cellSizeClicks === 3) {
+      cellWidth = 20;
+      cellHeight = 20;
+      cellSizeBtn.textContent = 'Big';
+    }
+
+    [].forEach.call(document.querySelectorAll('.square, .taken'), function (e) {
+      e.parentNode.removeChild(e);
+    });
+    createGrid();
+    showNextGrid();
+    width = Math.floor(gridWidth / cellWidth);
+    init();
+    startBtn.disabled = false;
+  });
 
   document.addEventListener('keyup', control);
-  //timerId = setInterval(moveDown, 1000);
 
   startBtn.addEventListener('click', () => {
     if (timerId) {
@@ -57,45 +112,76 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       draw();
       timerId = setInterval(moveDown, 1000);
-      random = Math.floor(Math.random() * theTetrominoes.length);
-      showNextTetromino();
     }
   });
 
+  function init() {
+    // Tetrominoes
+    lTetromino = [
+      [1, width + 1, width * 2 + 1, 2],
+      [width, width + 1, width + 2, width * 2 + 2],
+      [1, width + 1, width * 2 + 1, width * 2],
+      [width, width * 2, width * 2 + 1, width * 2 + 2],
+    ];
+
+    oTetromino = [
+      [1, 2, width + 1, width + 2],
+      [1, 2, width + 1, width + 2],
+      [1, 2, width + 1, width + 2],
+      [1, 2, width + 1, width + 2],
+    ];
+
+    theTetrominoes = [lTetromino, oTetromino];
+
+    currentPosition = Math.floor(width / 2);
+    currentRotation = 0;
+    random = Math.floor(Math.random() * theTetrominoes.length);
+    current = theTetrominoes[random][currentRotation];
+  }
+
   //create grid
   function createGrid() {
-    let squaresInGrid = (gridHeight * gridWidth) / 400;
-    let tableWidth = Math.floor(gridWidth / 20);
+    grid = [];
+    let squaresInGrid = (gridHeight * gridWidth) / (cellWidth * cellHeight);
+    let tableWidth = Math.floor(gridWidth / cellWidth);
     for (let i = 0; i < squaresInGrid + tableWidth; i++) {
       let square = document.createElement('div');
       if (i < squaresInGrid) {
         square.setAttribute('class', 'square');
+        square.style.width = cellWidth + 'px';
+        square.style.height = cellHeight + 'px';
       } else {
         square.setAttribute('class', 'taken');
+        square.style.width = cellWidth + 'px';
+        square.style.height = cellHeight + 'px';
       }
       gridContainer.appendChild(square);
       grid.push(square);
     }
-    return tableWidth;
   }
 
   // create grid to display upcoming tetromino
   function showNextGrid() {
+    displayNextGrid = [];
     for (let i = 0; i < 16; i++) {
       let square = document.createElement('div');
       square.setAttribute('class', 'square');
+      square.style.width = '20px';
+      square.style.height = '20px';
       showNextGridContainer.appendChild(square);
       displayNextGrid.push(square);
     }
-    return Math.floor(16 / 4);
+    showNextGridContainer.classList.add('show-next-grid');
   }
 
   function showNextTetromino() {
     displayNextGrid.forEach((square) => {
-      square.classList.remove('tetromino');
+      //square.classList.remove('tetromino');
+      square.style.backgroundColor = '';
     });
-    displayTetrominoes[random].forEach((index) => {
-      displayNextGrid[index + displayIndex].classList.add('tetromino');
+    displayTetrominoes[nextRandom].forEach((index) => {
+      //displayNextGrid[index + displayIndex].classList.add('tetromino');
+      displayNextGrid[index + displayIndex].style.backgroundColor = colors[nextRandom];
     });
   }
 
@@ -103,22 +189,24 @@ document.addEventListener('DOMContentLoaded', () => {
   function nextTetromino() {
     currentPosition = Math.floor(width / 2);
     currentRotation = 0;
-    //random = nextRandom;
-    random = Math.floor(Math.random() * theTetrominoes.length);
+    random = nextRandom;
+    nextRandom = Math.floor(Math.random() * theTetrominoes.length);
     current = theTetrominoes[random][currentRotation];
   }
 
   //draw
   function draw() {
     current.forEach((index) => {
-      grid[currentPosition + index].classList.add('tetromino');
+      //grid[currentPosition + index].classList.add('tetromino');
+      grid[currentPosition + index].style.backgroundColor = colors[random];
     });
   }
 
   //undraw
   function undraw() {
     current.forEach((index) => {
-      grid[currentPosition + index].classList.remove('tetromino');
+      //grid[currentPosition + index].classList.remove('tetromino');
+      grid[currentPosition + index].style.backgroundColor = '';
     });
   }
 
@@ -140,6 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
       draw();
       showNextTetromino();
       addScore();
+      gameOver();
     }
   }
 
@@ -191,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function addScore() {
-    for (let i = 0; i < (gridHeight / 20) * width; i += width) {
+    for (let i = 0; i < (gridHeight / cellHeight) * width; i += width) {
       let row = [];
       for (let j = 0; j < width; j++) {
         row.push(i + j);
@@ -202,17 +291,23 @@ document.addEventListener('DOMContentLoaded', () => {
         scoreDisplay.textContent = score;
         row.forEach((index) => {
           grid[index].classList.remove('taken');
-          grid[index].classList.remove('tetromino');
+          //grid[index].classList.remove('tetromino');
+          grid[index].style.backgroundColor = '';
         });
-        console.log(grid);
-
         const rowRemoved = grid.splice(i, width);
         grid = rowRemoved.concat(grid);
-        console.log(grid);
         grid.forEach((cell) => {
           gridContainer.appendChild(cell);
         });
       }
+    }
+  }
+
+  // game over
+  function gameOver() {
+    if (current.some((index) => grid[currentPosition + index].classList.contains('taken'))) {
+      scoreDisplay.textContent = 'end';
+      clearInterval(timerId);
     }
   }
 });
