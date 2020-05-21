@@ -5,10 +5,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const startBtn = document.getElementById('#startBtn');
   //let width = 30;
   let grid = [];
+  let displayNextGrid = [];
   let positionInfo = gridContainer.getBoundingClientRect();
   let gridHeight = positionInfo.height;
   let gridWidth = positionInfo.width;
+
+  //const height = Math.floor(gridHeight / 20);
   const width = createGrid();
+  //console.log(gridWidth, gridHeight, width);
+
+  //let nextRandom = 0;
+  let timerId;
+  let score = 0;
 
   // Tetrominoes
   const lTetromino = [
@@ -18,16 +26,41 @@ document.addEventListener('DOMContentLoaded', () => {
     [width, width * 2, width * 2 + 1, width * 2 + 2],
   ];
 
-  const theTetrominoes = [lTetromino];
+  const oTetromino = [
+    [1, 2, width + 1, width + 2],
+    [1, 2, width + 1, width + 2],
+    [1, 2, width + 1, width + 2],
+    [1, 2, width + 1, width + 2],
+  ];
 
-  let currentPosition = width / 2;
+  const theTetrominoes = [lTetromino, oTetromino];
+
+  let currentPosition = Math.floor(width / 2);
   let currentRotation = 0;
   let random = Math.floor(Math.random() * theTetrominoes.length);
-
   let current = theTetrominoes[random][currentRotation];
 
+  const displayWidth = showNextGrid();
+  let displayTetrominoes = [
+    [1, displayWidth + 1, displayWidth * 2 + 1, 2],
+    [1, 2, displayWidth + 1, displayWidth + 2],
+  ];
+  let displayIndex = displayWidth;
+
   document.addEventListener('keyup', control);
-  timerId = setInterval(moveDown, 1000);
+  //timerId = setInterval(moveDown, 1000);
+
+  startBtn.addEventListener('click', () => {
+    if (timerId) {
+      clearInterval(timerId);
+      timerId = null;
+    } else {
+      draw();
+      timerId = setInterval(moveDown, 1000);
+      random = Math.floor(Math.random() * theTetrominoes.length);
+      showNextTetromino();
+    }
+  });
 
   //create grid
   function createGrid() {
@@ -47,17 +80,30 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // create grid to display upcoming tetromino
-  function showNextTetromino() {
+  function showNextGrid() {
     for (let i = 0; i < 16; i++) {
       let square = document.createElement('div');
-        square.setAttribute('class', 'square');
-        showNextGridContainer.appendChild(square);
+      square.setAttribute('class', 'square');
+      showNextGridContainer.appendChild(square);
+      displayNextGrid.push(square);
+    }
+    return Math.floor(16 / 4);
+  }
+
+  function showNextTetromino() {
+    displayNextGrid.forEach((square) => {
+      square.classList.remove('tetromino');
+    });
+    displayTetrominoes[random].forEach((index) => {
+      displayNextGrid[index + displayIndex].classList.add('tetromino');
+    });
   }
 
   // select tetromino and set current position
   function nextTetromino() {
-    currentPosition = width / 2;
+    currentPosition = Math.floor(width / 2);
     currentRotation = 0;
+    //random = nextRandom;
     random = Math.floor(Math.random() * theTetrominoes.length);
     current = theTetrominoes[random][currentRotation];
   }
@@ -75,8 +121,8 @@ document.addEventListener('DOMContentLoaded', () => {
       grid[currentPosition + index].classList.remove('tetromino');
     });
   }
-  // move down every second
 
+  // move down every second
   function moveDown() {
     undraw();
     currentPosition += width;
@@ -92,6 +138,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       nextTetromino();
       draw();
+      showNextTetromino();
+      addScore();
     }
   }
 
@@ -138,7 +186,33 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (e.keyCode === 39) {
       moveRight();
     } else if (e.keyCode === 40) {
-      //move down faster
+      moveDown();
+    }
+  }
+
+  function addScore() {
+    for (let i = 0; i < (gridHeight / 20) * width; i += width) {
+      let row = [];
+      for (let j = 0; j < width; j++) {
+        row.push(i + j);
+      }
+
+      if (row.every((index) => grid[index].classList.contains('taken'))) {
+        score += 10;
+        scoreDisplay.textContent = score;
+        row.forEach((index) => {
+          grid[index].classList.remove('taken');
+          grid[index].classList.remove('tetromino');
+        });
+        console.log(grid);
+
+        const rowRemoved = grid.splice(i, width);
+        grid = rowRemoved.concat(grid);
+        console.log(grid);
+        grid.forEach((cell) => {
+          gridContainer.appendChild(cell);
+        });
+      }
     }
   }
 });
