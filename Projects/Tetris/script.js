@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
   cellSizeBtn.disabled = true;
   startBtn.disabled = true;
 
+  const audio = new Audio('completed.wav');
+
   let grid = [];
   const colors = ['orange', 'purple'];
 
@@ -56,20 +58,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (gridSizeClicks === 1) {
-      gridWidth = 400;
-      gridHeight = 400;
+      gridWidth = 420;
+      gridHeight = 420;
       gridContainer.style.width = gridWidth + 'px';
       gridContainer.style.height = gridHeight + 'px';
       gridSizeBtn.textContent = 'Small';
     } else if (gridSizeClicks === 2) {
-      gridWidth = 500;
-      gridHeight = 500;
+      gridWidth = 540;
+      gridHeight = 540;
       gridContainer.style.width = gridWidth + 'px';
       gridContainer.style.height = gridHeight + 'px';
       gridSizeBtn.textContent = 'Medium';
     } else if (gridSizeClicks === 3) {
-      gridWidth = 600;
-      gridHeight = 600;
+      gridWidth = 660;
+      gridHeight = 660;
       gridContainer.style.width = gridWidth + 'px';
       gridContainer.style.height = gridHeight + 'px';
       gridSizeBtn.textContent = 'Big';
@@ -112,6 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keyup', control);
 
   startBtn.addEventListener('click', () => {
+    cellSizeBtn.classList.add('no-change-during-game');
+    gridSizeBtn.classList.add('no-change-during-game');
     if (timerId) {
       clearInterval(timerId);
       timerId = null;
@@ -139,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     theTetrominoes = [lTetromino, oTetromino];
 
-    currentPosition = Math.floor(width / 2);
+    currentPosition = Math.floor(width / 2) - 1;
     currentRotation = 0;
     random = Math.floor(Math.random() * theTetrominoes.length);
     current = theTetrominoes[random][currentRotation];
@@ -196,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // select tetromino and set current position
   function nextTetromino() {
-    currentPosition = Math.floor(width / 2);
+    currentPosition = Math.floor(width / 2) - 1;
     currentRotation = 0;
     random = nextRandom;
     nextRandom = Math.floor(Math.random() * theTetrominoes.length);
@@ -300,6 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (row.every((index) => grid[index].classList.contains('taken'))) {
         score += 10;
+        audio.play();
         //increase speed with each score
         increaseSpeed();
         scoreDisplay.textContent = score;

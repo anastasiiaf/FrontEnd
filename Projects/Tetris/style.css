@@ -39,9 +39,11 @@ span {
 
 .buttons {
   height: 40px;
-  border-style: none;
+
   border-radius: 50%;
   background-color: steelblue;
+  border-right: 1px solid black;
+  border-top: 1px solid black;
   font-family: 'Chelsea Market', cursive;
   font-size: large;
 }
@@ -66,10 +68,6 @@ button:disabled {
   background-color: gainsboro;
 }
 
-.add-left-border {
-  border-left: 3px solid black;
-}
-
 .show-next-grid {
   width: 80px;
   height: 80px;
@@ -79,6 +77,10 @@ button:disabled {
   border-radius: 20%;
   margin-left: 20px;
   margin-bottom: 10px;
+}
+
+.no-change-during-game {
+  pointer-events: none;
 }
 
 .square {
