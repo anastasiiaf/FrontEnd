@@ -1,6 +1,61 @@
+body {
+  margin: 0, auto;
+  background-color: forestgreen;
+}
+
 .container {
   display: flex;
-  position: fixed;
+  position: absolute;
+  flex-direction: row;
+  background-color: plum;
+  border: 3px solid black;
+}
+
+.buttons-container {
+  width: 120px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+p {
+  margin-top: 5px;
+  height: 5px;
+  width: 120px;
+  font-family: 'Chelsea Market', cursive;
+}
+#next {
+  margin-bottom: 40px;
+}
+
+h3 {
+  font-family: 'Chelsea Market', cursive;
+}
+
+span {
+  margin-right: 15px;
+}
+
+.buttons {
+  height: 40px;
+  border-style: none;
+  border-radius: 50%;
+  background-color: steelblue;
+  font-family: 'Chelsea Market', cursive;
+  font-size: large;
+}
+
+button:hover {
+  color: white;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:disabled {
+  color: cornflowerblue;
 }
 
 .grid-setup {
@@ -8,17 +63,22 @@
   height: 300px; */
   display: flex;
   flex-wrap: wrap;
-
   background-color: gainsboro;
 }
 
+.add-left-border {
+  border-left: 3px solid black;
+}
+
 .show-next-grid {
-  margin-left: 20px;
   width: 80px;
   height: 80px;
   display: flex;
   flex-wrap: wrap;
   background-color: gainsboro;
+  border-radius: 20%;
+  margin-left: 20px;
+  margin-bottom: 10px;
 }
 
 .square {
@@ -28,7 +88,6 @@
 }
 
 .tetromino {
-  background-color: blue;
 }
 
 .taken {
