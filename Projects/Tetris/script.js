@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const audio = new Audio('completed.wav');
 
   let grid = [];
-  const colors = ['orange', 'purple'];
+  const colors = ['cyan', 'blue', 'orange', 'purple', 'magenta', 'green', 'red'];
 
   let gridSizeClicks = 0;
   let cellSizeClicks = 0;
@@ -29,8 +29,13 @@ document.addEventListener('DOMContentLoaded', () => {
   speedDisplay.textContent = speed + 'ms';
 
   // Tetrominoes
-  let lTetromino = [];
+  let iTetromino = [];
+  let lrTetromino = [];
+  let llTetromino = [];
   let oTetromino = [];
+  let pTetromino = [];
+  let zrTetromino = [];
+  let zlTetromino = [];
   let theTetrominoes = [];
   let currentPosition;
   let currentRotation;
@@ -39,10 +44,15 @@ document.addEventListener('DOMContentLoaded', () => {
   let current;
 
   let displayNextGrid = [];
-  const displayWidth = 4;
+  const displayWidth = 5;
   let displayTetrominoes = [
+    [2, displayWidth + 2, displayWidth * 2 + 2, displayWidth * 3 + 2],
     [1, displayWidth + 1, displayWidth * 2 + 1, 2],
-    [1, 2, displayWidth + 1, displayWidth + 2],
+    [2, 3, displayWidth + 3, displayWidth * 2 + 3],
+    [2, 3, displayWidth + 2, displayWidth + 3],
+    [2, displayWidth + 1, displayWidth + 2, displayWidth + 3],
+    [displayWidth + 1, displayWidth + 2, displayWidth * 2 + 2, displayWidth * 2 + 3],
+    [displayWidth + 2, displayWidth + 3, displayWidth * 2 + 1, displayWidth * 2 + 2],
   ];
   const displayIndex = displayWidth;
 
@@ -127,11 +137,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function init() {
     // Tetrominoes
-    lTetromino = [
+    iTetromino = [
+      [1, width + 1, width * 2 + 1, width * 3 + 1],
+      [width, width + 1, width + 2, width + 3],
+      [1, width + 1, width * 2 + 1, width * 3 + 1],
+      [width, width + 1, width + 2, width + 3],
+    ];
+
+    lrTetromino = [
       [1, width + 1, width * 2 + 1, 2],
       [width, width + 1, width + 2, width * 2 + 2],
       [1, width + 1, width * 2 + 1, width * 2],
       [width, width * 2, width * 2 + 1, width * 2 + 2],
+    ];
+
+    llTetromino = [
+      [1, 2, width + 2, width * 2 + 2],
+      [3, width + 1, width + 2, width + 3],
+      [2, width + 2, width * 2 + 2, width * 2 + 3],
+      [width + 1, width + 2, width + 3, width * 2 + 1],
     ];
 
     oTetromino = [
@@ -141,7 +165,35 @@ document.addEventListener('DOMContentLoaded', () => {
       [1, 2, width + 1, width + 2],
     ];
 
-    theTetrominoes = [lTetromino, oTetromino];
+    pTetromino = [
+      [1, width, width + 1, width + 2],
+      [0, width, width + 1, width * 2],
+      [width, width + 1, width + 2, width * 2 + 1],
+      [width, 1, width + 1, width * 2 + 1],
+    ];
+
+    zlTetromino = [
+      [0, 1, width + 1, width + 2],
+      [1, width, width + 1, width * 2],
+      [0, 1, width + 1, width + 2],
+      [1, width, width + 1, width * 2],
+    ];
+    zrTetromino = [
+      [1, 2, width, width + 1],
+      [0, width, width + 1, width * 2 + 1],
+      [1, 2, width, width + 1],
+      [0, width, width + 1, width * 2 + 1],
+    ];
+
+    theTetrominoes = [
+      iTetromino,
+      lrTetromino,
+      llTetromino,
+      oTetromino,
+      pTetromino,
+      zlTetromino,
+      zrTetromino,
+    ];
 
     currentPosition = Math.floor(width / 2) - 1;
     currentRotation = 0;
@@ -173,11 +225,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // create grid to display upcoming tetromino
   function showNextGrid() {
     displayNextGrid = [];
-    for (let i = 0; i < 16; i++) {
+    for (let i = 0; i < 25; i++) {
       let square = document.createElement('div');
       square.setAttribute('class', 'square');
-      square.style.width = '20px';
-      square.style.height = '20px';
+      square.style.width = '16px';
+      square.style.height = '16px';
       showNextGridContainer.appendChild(square);
       displayNextGrid.push(square);
     }
