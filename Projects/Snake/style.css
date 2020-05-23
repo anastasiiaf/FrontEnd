@@ -1,0 +1,13 @@
+.grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: blueviolet;
+}
+
+.cell {
+  background-color: goldenrod;
+}
+
+.snake {
+  background-color: green;
+}
