@@ -1,6 +1,7 @@
 const gridContainer = document.getElementById('#grid');
 const startBtn = document.getElementById('#startBtn');
 let showScore = document.getElementById('#score');
+let showSpeed = document.getElementById('#speed');
 
 let gridWidth = 300;
 let gridHeight = 300;
@@ -12,23 +13,31 @@ const height = gridHeight / cellHeight;
 let cellsInTable = (gridWidth * gridHeight) / (cellWidth * cellHeight);
 let timerId;
 score = 0;
-
+speed = 1000;
+const colors = ['green', 'cyan', 'blue', 'orange', 'purple', 'magenta', 'red'];
+let snakeColors = ['green', 'green', 'green'];
+let randomColor = 0;
 let snake = [2, 1, 0];
 let direction = ['right', 'right', 'right'];
 let currPosition = [2, 1, 0];
-let nextMove = 'right';
+let nextMove = '';
 
-createGrid();
+game();
 
 startBtn.addEventListener('click', () => {
   if (timerId) {
     clearInterval(timerId);
     timerId = null;
   } else {
-    game();
-    timerId = setInterval(move, 600);
+    draw();
+    timerId = setInterval(move, speed);
   }
 });
+
+function game() {
+  createGrid();
+  apple();
+}
 
 function createGrid() {
   gridContainer.style.width = gridWidth + 'px';
@@ -38,35 +47,35 @@ function createGrid() {
   let cell;
   for (let i = 0; i < cellsInTable; i++) {
     cell = document.createElement('div');
-
+    cell.setAttribute('class', 'cell');
     cell.style.width = cellWidth + 'px';
     cell.style.height = cellHeight + 'px';
     //cell.textContent = i;
-
-    if (i < width || i % width === 0 || i % width === width - 1 || i > cellsInTable - width) {
-      cell.setAttribute('class', 'cell taken');
-    } else {
-      cell.setAttribute('class', 'cell');
-    }
     gridContainer.appendChild(cell);
     grid.push(cell);
   }
 }
 
-function game() {
-  draw();
-  apple();
-}
-
 function draw() {
   snake.forEach((index) => {
-    grid[currPosition[index]].style.backgroundColor = 'green';
+    grid[currPosition[index]].classList.add('snake');
+    /* if (direction[index] === 'right' || direction[index] === 'left') {
+      grid[currPosition[index]].style.backgroundImage = 'linear-gradient(green, yellow, green)';
+    } else {
+      grid[currPosition[index]].style.backgroundImage =
+        'linear-gradient(to right, green, yellow, green)';
+    } */
+    //grid[currPosition[index]].style.backgroundColor = colors[snakeColor];
+    grid[currPosition[index]].style.background =
+      'radial-gradient(lavenderblush, ' + snakeColors[index] + ')';
   });
 }
 
 function undraw() {
   snake.forEach((index) => {
+    grid[currPosition[index]].classList.remove('snake');
     grid[currPosition[index]].style.backgroundColor = '';
+    grid[currPosition[index]].style.backgroundImage = '';
   });
 }
 
@@ -83,18 +92,18 @@ function move() {
       moveUp(index);
     }
   });
-  /* if (grid[currPosition[0]].classList.contains('apple')) {
-    grid[currPosition[0]].classList.remove('apple');
-    snake.unshift(snake.length);
-    currPosition.unshift(currPosition[0]);
+
+  isSnake();
+  if (nextMove === '') {
     let lastMove = direction[0];
+    //console.log(snake, currPosition, direction);
     direction.unshift(lastMove);
-    console.log(snake, currPosition, direction);
-  } */
-  let lastMove = direction[0];
-  direction.unshift(lastMove);
-  direction.pop();
-  //console.log(direction);
+    direction.pop();
+  } else {
+    direction.unshift(nextMove);
+    direction.pop();
+    //console.log(snake, currPosition, direction);
+  }
 }
 
 function moveRight(index) {
@@ -152,40 +161,63 @@ function control(key) {
     nextMove = 'right';
   } else if (key.keyCode === 37) {
     nextMove = 'left';
+  } else {
+    nextMove = '';
   }
-  direction.unshift(nextMove);
-  direction.pop();
   move();
 }
 
 function apple() {
   let i = Math.floor(Math.random() * cellsInTable);
-  let except = [0, width - 1, cellsInTable - width + 1, cellsInTable - 1];
+  let except = [0, width - 1, cellsInTable - width, cellsInTable - 1];
   except = except.concat(currPosition);
-  console.log(except);
   while (except.includes(i) === true) {
     i = Math.floor(Math.random() * cellsInTable);
   }
   grid[i].classList.add('apple');
-  grid[i].style.backgroundColor = 'red';
+
+  randomColor = Math.floor(Math.random() * colors.length);
+  grid[i].style.backgroundColor = colors[randomColor];
 }
 
 function isApple(index, step) {
   if (grid[currPosition[0]].classList.contains('apple')) {
     grid[currPosition[0]].classList.remove('apple');
+    grid[currPosition[0]].style.backgroundColor = '';
     snake.unshift(snake.length);
-    //console.log(snake, currPosition, direction);
     currPosition.unshift(currPosition[index] + step);
     let lastMove = direction[0];
     direction.unshift(lastMove);
+    //console.log('Apple:');
     //console.log(snake, currPosition, direction);
     score += 10;
     showScore.textContent = score;
+
+    snakeColors.unshift(colors[randomColor]);
     apple();
+    increaseSpeed();
+  }
+}
+
+function isSnake() {
+  let except = currPosition.slice(0);
+  let head = except.shift();
+  if (except.includes(head) === true) {
+    draw();
+    gameOver();
   }
 }
 
 function gameOver() {
   showScore.textContent = 'Game over!';
   clearInterval(timerId);
+}
+
+function increaseSpeed() {
+  if (speed > 100) {
+    speed -= 50;
+    showSpeed.textContent = speed + 'ms';
+    clearInterval(timerId);
+    timerId = setInterval(move, speed);
+  }
 }

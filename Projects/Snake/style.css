@@ -1,15 +1,27 @@
 .grid-container {
   display: flex;
   flex-wrap: wrap;
-  background-color: blueviolet;
+  background-color: gainsboro;
 }
 
 .cell {
-  background-color: goldenrod;
+  background-color: gainsboro;
+  font-size: 10px;
+  font-weight: 100;
+}
+
+span {
+  margin-right: 20px;
 }
 
 .snake {
   background-color: green;
+  border-radius: 50%;
+}
+
+.apple {
+  background-color: red;
+  border-radius: 50%;
 }
 
 .taken {
