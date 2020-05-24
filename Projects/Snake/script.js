@@ -1,10 +1,13 @@
 const gridContainer = document.getElementById('#grid');
 const startBtn = document.getElementById('#startBtn');
+const refreshBtn = document.getElementById('#refreshBtn');
 let showScore = document.getElementById('#score');
 let showSpeed = document.getElementById('#speed');
+let gameLost = document.getElementById('#game-over');
+let gameLostP = document.getElementById('#game-over-p');
 
-let gridWidth = 300;
-let gridHeight = 300;
+let gridWidth = 600;
+let gridHeight = 600;
 let cellWidth = 15;
 let cellHeight = 15;
 let grid;
@@ -23,6 +26,12 @@ let currPosition = [2, 1, 0];
 let nextMove = '';
 
 game();
+
+refreshBtn.addEventListener('click', () => {
+  location.reload();
+  gameLost.classList.remove('game-lost');
+  gameLostP.textContent = 'Game over!';
+});
 
 startBtn.addEventListener('click', () => {
   if (timerId) {
@@ -209,13 +218,15 @@ function isSnake() {
 }
 
 function gameOver() {
-  showScore.textContent = 'Game over!';
+  //showScore.textContent = 'Game over!';
   clearInterval(timerId);
+  gameLost.classList.add('game-lost');
+  gameLostP.textContent = 'Game over!';
 }
 
 function increaseSpeed() {
-  if (speed > 100) {
-    speed -= 50;
+  if (speed > 50) {
+    speed -= 25;
     showSpeed.textContent = speed + 'ms';
     clearInterval(timerId);
     timerId = setInterval(move, speed);
