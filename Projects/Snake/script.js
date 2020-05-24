@@ -17,7 +17,21 @@ let cellsInTable = (gridWidth * gridHeight) / (cellWidth * cellHeight);
 let timerId;
 score = 0;
 speed = 1000;
-const colors = ['green', 'cyan', 'blue', 'orange', 'purple', 'magenta', 'red'];
+const colors = [
+  'green',
+  'cyan',
+  'olivedrab',
+  'blue',
+  'deepskyblue',
+  'teal',
+  'orange',
+  'coral',
+  'crimson',
+  'yellow',
+  'purple',
+  'magenta',
+  'red',
+];
 let snakeColors = ['green', 'green', 'green'];
 let randomColor = 0;
 let snake = [2, 1, 0];

@@ -25,6 +25,8 @@ button:focus {
 }
 
 .game-lost {
+  padding-right: 5px;
+  padding-bottom: 5px;
   height: 600px;
   width: 600px;
   position: fixed;
@@ -35,7 +37,7 @@ button:focus {
   font-size: x-large;
   color: black;
   font-weight: 300;
-  line-height: 600px;
+  line-height: 550px;
 }
 
 .cell {
