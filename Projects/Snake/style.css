@@ -8,6 +8,7 @@ body {
   flex-wrap: wrap;
   background-color: gainsboro;
   position: fixed;
+  border: 3px solid grey;
 }
 
 .buttons {
