@@ -1,4 +1,5 @@
-body {
+body,
+html {
   margin: 0 auto;
 }
 
@@ -9,9 +10,33 @@ body {
 }
 
 img {
-  height: 12rem;
+  height: 10rem;
+  width: 10rem;
 }
 
 .test {
   background-color: lawngreen;
+}
+
+.fixed-container {
+}
+
+.sidebar {
+}
+
+.fixed-sidebar {
+}
+
+.about {
+  height: 100%;
+}
+.cv {
+  height: 100%;
+}
+.skills {
+  height: 100%;
+}
+
+.page {
+  margin-top: 20rem;
 }
