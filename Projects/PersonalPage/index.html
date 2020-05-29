@@ -1,229 +1,67 @@
 <!DOCTYPE html>
-
-<html class="no-js">
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title></title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
     <link
       rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style_v2.css" />
   </head>
   <body>
-    <!--  <nav id="mainNavBar" class="navbar navbar-dark navbar-expand-md py-0 ml-auto">
-      <a href="#" class="navbar-brand">AF</a>
-      <button
-        class="navbar-toggler"
-        data-toggle="collapse"
-        data-target="navLinks"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navLinks">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a href="" class="nav-link">Home</a>
-          </li>
-          <li class="nav-item">
-            <a href="" class="nav-link">About</a>
-          </li>
-          <li class="nav-item">
-            <a href="" class="nav-link">Contact</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <div id="container-body" class="container">
+      <div class="row">
+        <div class="sidebar col-md-3">
+          <div class="fixed-container">
+            <div class="fixed-sidebar">
+              <div class="row">
+                <div class="col-sm-12">
+                  <img src="1.jpg" class="d-block mx-auto" alt="photo" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="h5 text-center test">Anastasiia Filchenko</div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 d-md-none">
+                  <div class="h5 text-center">contacts</div>
+                </div>
+              </div>
+              <br />
 
-
-
--->
-
-    <nav id="navbar-test" class="leftbar">
-      <div class="text-left">
-        <img src="1.jpg" class="rounded img-fluid" alt="" />
-      </div>
-
-      <ul class="nav nav-pills flex-column">
-        <p>Anastasiia Filchenko</p>
-        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="#cv">CV</a></li>
-        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-
-    <!--  <div class="container leftbar">
-      <div>About</div>
-      <div>Home</div>
-    </div>
-    -->
-
-    <div id="main" class="rightbar" data-spy="scroll" data-target="#navbar-test" data-offset="0">
-      <div id="about" class="about-section">About</div>
-      <div id="cv" class="cv-section">CV</div>
-      <div id="skills" class="skills-section">Skills</div>
-      <div id="projects" class="projects-section">
-        Projects
-        <div class="container">
-          <div class="row">
-            <div class="col-sm">
-              One of three columns
-              <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="Card image cap" />
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the
-                    card's content.
-                  </p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
+              <nav class="navbar navbar-expand-md">
+                <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  Content
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav flex-column">
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#cv">CV</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                  </ul>
                 </div>
-              </div>
-            </div>
-            <div class="col-sm">
-              One of three columns
-              <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="Card image cap" />
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the
-                    card's content.
-                  </p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm">
-              One of three columns
-              <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="Card image cap" />
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the
-                    card's content.
-                  </p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm">
-              One of three columns
-              <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="Card image cap" />
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the
-                    card's content.
-                  </p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm">
-              One of three columns
-              <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="Card image cap" />
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the
-                    card's content.
-                  </p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm">
-              One of three columns
-              <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="Card image cap" />
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the
-                    card's content.
-                  </p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm">
-              One of three columns
-              <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="Card image cap" />
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the
-                    card's content.
-                  </p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm">
-              One of three columns
-              <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="Card image cap" />
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the
-                    card's content.
-                  </p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm">
-              One of three columns
-              <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="Card image cap" />
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the
-                    card's content.
-                  </p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
+              </nav>
             </div>
           </div>
         </div>
+        <div class="col-md-9"></div>
       </div>
-      <div id="contact" class="contact-section">Contact</div>
     </div>
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
   </body>
 </html>

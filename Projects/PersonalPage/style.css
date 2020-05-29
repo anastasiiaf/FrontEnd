@@ -1,73 +1,17 @@
 body {
   margin: 0 auto;
-  background: black;
 }
 
-.leftbar {
-  margin: 0 auto;
-  padding: 0 5%;
-  position: fixed;
+#container-body {
+  background-color: coral;
+  width: 100%;
   height: 100%;
-  width: 25%;
-  background-color: pink;
-}
-
-ul {
-  margin-top: 35vh;
-}
-
-.rightbar {
-  margin: 0 0 0 25%;
-  position: absolute;
-  display: block;
-  height: 100%;
-  width: 75%;
-}
-
-.about-section {
-  height: 100%;
-  background-color: purple;
-}
-
-.cv-section {
-  height: 100%;
-  background-color: green;
-}
-.skills-section {
-  height: 100%;
-  background-color: purple;
-}
-
-.projects-section {
-  height: fit-content;
-  background-color: green;
-}
-
-.contact-section {
-  height: 100%;
-  background-color: purple;
-}
-
-#main {
-  overflow-y: scroll;
-}
-
-.nav-link.active {
-  background: red !important;
-  width: 200vw !important;
-  color: white;
-
-  transform: translate3d(20px, -5px, -135px);
-  transform-style: preserve-3d;
 }
 
 img {
-  width: 20%;
-  height: 30%;
-  margin: 0 auto;
-  padding: 0;
-  position: fixed;
+  height: 12rem;
 }
-.pic {
-  margin: 0 auto;
+
+.test {
+  background-color: lawngreen;
 }
