@@ -19,24 +19,25 @@ img {
 }
 
 .fixed-container {
-  width: 100%;
 }
 
 .fixed-sidebar {
 }
 
-.about {
-  height: 100%;
+.about-section {
+  height: 720px;
 }
-.cv {
-  height: 100%;
+.cv-section {
+  height: 720px;
 }
-.skills {
-  height: 100%;
+.skills-section {
+  height: 720px;
 }
-
-.page {
-  width: 75%;
+.projects-section {
+  height: 720px;
+}
+.contact-section {
+  height: 720px;
 }
 
 @media (min-width: 768px) {
