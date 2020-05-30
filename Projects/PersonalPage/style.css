@@ -1,12 +1,12 @@
 body,
 html {
   margin: 0 auto;
+  height: 100%;
 }
 
 #container-body {
   background-color: coral;
   width: 100%;
-  height: 100%;
 }
 
 img {
@@ -19,9 +19,7 @@ img {
 }
 
 .fixed-container {
-}
-
-.sidebar {
+  width: 100%;
 }
 
 .fixed-sidebar {
@@ -38,5 +36,13 @@ img {
 }
 
 .page {
-  margin-top: 20rem;
+  width: 75%;
+}
+
+@media (min-width: 768px) {
+  #sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+  }
 }
