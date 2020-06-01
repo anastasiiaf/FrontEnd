@@ -15,7 +15,21 @@ app.get('/bye', function (req, res) {
 // "/dog" Meow
 app.get('/dog', function (req, res) {
   console.log('Someone made a request to /dog');
-  res.send('Woof!');
+  res.send('Bark Woof!');
+});
+
+//introduce rout parameter to define pattern.
+// ":" tells Express to not match character for character
+app.get('/r/:subredditName', function (req, res) {
+  res.send('Welcome to ' + req.params.subredditName + ' subreddit!');
+});
+
+app.get('/r/:subredditName/comments/:id/:title', function (req, res) {
+  res.send('Welcome to the comments page!');
+});
+
+app.get('*', function (req, res) {
+  res.send('You are a star!');
 });
 
 // Tell express to listen for requests (start server)
