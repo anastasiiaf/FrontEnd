@@ -1,0 +1,10 @@
+<h1>My pets</h1>
+
+<% pets.forEach(function(pet){ %>
+<li><%= pet%></li>
+<%}); %>
+
+<form action="/addpet" method="POST">
+  <input type="text" name="newPet" placeholder="name" />
+  <button>My pet</button>
+</form>
