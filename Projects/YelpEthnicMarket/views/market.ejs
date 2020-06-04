@@ -1,0 +1,13 @@
+<%- include("partials/header") %>
+<h1>Market page!</h1>
+<a href="/market/new">Add new shop</a>
+
+<%market.forEach(function(shop){%>
+<div>
+  <h4><%= shop.name %></h4>
+  <img src="<%= shop.image %>" alt="" />
+</div>
+
+<%});%>
+<br />
+<%- include("partials/footer") %>
