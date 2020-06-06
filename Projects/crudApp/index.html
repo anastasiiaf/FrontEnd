@@ -42,6 +42,14 @@
         </div>
         <div class="col-lg-2"></div>
       </div>
+      <br />
+      <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+          <div id="message" class="alert" role="alert"></div>
+        </div>
+        <div class="col-lg-2"></div>
+      </div>
     </div>
 
     <script
@@ -65,9 +73,78 @@
         const display = $('#display');
         const form = $('#form');
         const todoUserInput = $('#todoUserInput');
+        const message = $('#message');
+        message.hide();
+
+        const displayMessage = (flag, msg) => {
+          if (flag) {
+            message.removeClass('alert-danger');
+            message.addClass('alert-success');
+            message.html(msg);
+            message.show();
+          } else {
+            message.addClass('alert-danger');
+            message.removeClass('alert-success');
+            message.html(msg);
+            message.show();
+          }
+        };
+
+        const getToDos = () => {
+          fetch('/getToDos', { method: 'get' })
+            .then((response) => {
+              return response.json();
+            })
+            .then((data) => {
+              console.log(data);
+              displayToDos(data);
+            });
+        };
+
+        getToDos();
 
         const resetToDosInput = () => {
           todoUserInput.val('');
+        };
+
+        const deleteToDo = (todo, listItemID, deleteID) => {
+          let deleteBtn = $(`#${deleteID}`);
+          deleteBtn.click(() => {
+            fetch(`/${todo._id}`, {
+              method: 'delete',
+            })
+              .then((response) => {
+                return response.json();
+              })
+              .then((data) => {
+                if (data.ok == 1) {
+                  $(`#${listItemID}`).remove();
+                }
+              });
+          });
+        };
+
+        const editToDo = (todo, todoID, editID) => {
+          let editBtn = $(`#${editID}`);
+          editBtn.click(() => {
+            fetch(`/${todo._id}`, {
+              method: 'put',
+              headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+              },
+              body: JSON.stringify({ todo: todoUserInput.val() }),
+            })
+              .then((response) => {
+                return response.json();
+              })
+              .then((data) => {
+                if (data.ok == 1) {
+                  let todoIndex = $(`#${todoID}`);
+                  todoIndex.html(data.value.todo);
+                  resetToDosInput();
+                }
+              });
+          });
         };
 
         const buildIDs = (todo) => {
@@ -80,14 +157,56 @@
         };
 
         const buildTemplate = (todo, ids) => {
-          return '<li class="list-group-item" id='${ids.listItemID}'>'
-            '<div class="row">'
-              '<div class="col-md-4" id='${ids.todoID}'>'${todo.todo}'</div>'
-              '<div class="col-md-4"></div>'
-              '<div class="col-md-4"></div>'
-              '</div>'
-            '</li>';
+          return `<li class='list-group-item' id"${ids.listItemID}">
+            <div class="row">
+              <div class="col-md-4" id="${ids.todoID}">${todo.todo}</div>
+              <div class="col-md-4"></div>
+              <div class="col-md-4 text-right">
+                <button type="button" class="btn btn-secondary" id="${ids.editID}">Edit</button>
+                <button type="button" class="btn btn-danger" id="${ids.deleteID}">Delete</button>
+              </div>
+            </div>
+          </li>`;
         };
+
+        const displayToDos = (data) => {
+          data.forEach((todo) => {
+            let ids = buildIDs(todo);
+            console.log(ids);
+            display.append(buildTemplate(todo, ids));
+            editToDo(todo, ids.todoID, ids.editID);
+            deleteToDo(todo, ids.listItemID, ids.deleteID);
+          });
+        };
+
+        form.submit((e) => {
+          e.preventDefault();
+          fetch('/', {
+            method: 'post',
+            body: JSON.stringify({ todo: todoUserInput.val() }),
+            headers: {
+              'Content-Type': 'application/json; charset=utf-8',
+            },
+          })
+            .then((response) => {
+              return response.json();
+            })
+            .then((data) => {
+              if (!data.error) {
+                if (data.result.ok == 1 && data.result.n == 1) {
+                  let ids = buildIDs(data.document);
+                  display.append(buildTemplate(data.document, ids));
+                  editToDo(data.document, ids.todoID, ids.editID);
+                  deleteToDo(data.document, ids.listItemID, ids.deleteID);
+                  displayMessage(true, data.msg);
+                }
+              } else {
+                displayMessage(false, data.error.message);
+              }
+
+              resetToDosInput();
+            });
+        });
       });
     </script>
   </body>
