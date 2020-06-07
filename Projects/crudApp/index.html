@@ -119,6 +119,8 @@
               .then((data) => {
                 if (data.ok == 1) {
                   $(`#${listItemID}`).remove();
+                  // force reload page - page is not updated after todo deleted
+                  location.reload();
                 }
               });
           });
