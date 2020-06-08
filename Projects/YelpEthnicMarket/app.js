@@ -1,3 +1,4 @@
+// declaration of several variables in line
 var express = require('express'),
   app = express(),
   bodyParser = require('body-parser'),
@@ -7,10 +8,9 @@ mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 mongoose.connect(
   'mongodb+srv://Anastasiia:250591Rada@cluster0-v3ypj.mongodb.net/YelpEthnicMarket?retryWrites=true&w=majority',
-);
+); // check how to encode password!!!
 
 // Schema setup
-
 var shopSchema = new mongoose.Schema({
   name: String,
   image: String,
@@ -57,7 +57,7 @@ app.get('/market/new', function (req, res) {
   res.render('new');
 });
 
-//SHOW - shows more info about shop
+// SHOW - shows more info about shop
 // '/market/:id' - this rout should be after '/market/new' GET rout
 // otherwise, it will be overwritten
 app.get('/market/:id', function (req, res) {
