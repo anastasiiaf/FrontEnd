@@ -1,0 +1,48 @@
+Git and GitHub intro - 1h
+https://www.freecodecamp.org/news/git-and-github-crash-course/
+https://www.freecodecamp.org/news/what-is-github-what-is-git-and-how-to-use-these-developer-tools/
+
+JS Promises tutorial 
+https://www.freecodecamp.org/news/javascript-es6-promises-for-beginners-resolve-reject-and-chaining-explained/
+
+Arrow functions in JS
+https://www.freecodecamp.org/news/arrow-function-javascript-tutorial-how-to-declare-a-js-function-with-the-new-es6-syntax/
+
+ToDo APi in Deno & Oak
+https://www.freecodecamp.org/news/create-a-todo-api-in-deno-written-by-a-guy-coming-from-node/
+
+D3.js data visualisation - 13h
+https://www.freecodecamp.org/news/data-visualization-using-d3-course/
+
+Plan, code, deploy - 2h
+https://www.freecodecamp.org/news/plan-code-and-deploy-a-startup-in-2-hours/
+
+
+
+
+Markdown previewer with React.js
+https://www.freecodecamp.org/news/how-to-build-a-markdown-previewer-with-react-js/
+
+Gestures and Animations in React native - 1.5h
+https://www.freecodecamp.org/news/react-native-gestures-animations-tutorial/
+
+React Hooks: Tic Tak Toe app - 1h
+https://www.freecodecamp.org/news/learn-how-to-build-tic-tac-toe-with-react-hooks/
+
+React Hooks: Paint app 
+https://www.freecodecamp.org/news/learn-react-hooks-by-building-a-paint-app/
+
+Yelp Clone with React and GraphQL
+https://www.freecodecamp.org/news/how-to-create-a-full-stack-yelp-clone-with-react-graphql/
+
+
+
+
+Ethical hacking -  9h
+https://www.freecodecamp.org/news/license-to-pentest-ethical-hacking-course-for-beginners/
+
+LED light blincking code
+https://www.freecodecamp.org/news/code-behind-an-led-light/
+
+Encryption algorithms explained
+https://www.freecodecamp.org/news/understanding-encryption-algorithms/
