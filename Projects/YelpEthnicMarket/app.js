@@ -9,16 +9,16 @@ var express = require('express'),
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
-// seed: empties db and seeds with some data - easier to check if next models (comments) work
-seedDB();
-
 mongoose.connect(
   'mongodb+srv://Anastasiia:250591Rada@cluster0-v3ypj.mongodb.net/YelpEthnicMarket?retryWrites=true&w=majority',
 ); // check how to encode password!!!
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
+// seed: empties db and seeds with some data - easier to check if next models (comments) work
+seedDB();
 
+//
 app.get('/', function (req, res) {
   res.render('landing');
 });
@@ -29,7 +29,7 @@ app.get('/market', function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.render('index', { market: shops });
+      res.render('market/index', { market: shops });
     }
   });
 });
@@ -51,7 +51,7 @@ app.post('/market', function (req, res) {
 
 // NEW - show form to create a new shop
 app.get('/market/new', function (req, res) {
-  res.render('new');
+  res.render('market/new');
 });
 
 // SHOW - shows more info about shop
@@ -66,9 +66,42 @@ app.get('/market/:id', function (req, res) {
         console.log(err);
       } else {
         console.log(foundShop);
-        res.render('show', { market: foundShop });
+        res.render('market/show', { market: foundShop });
       }
     });
+});
+
+// NEW Comment route
+app.get('/market/:id/comments/new', function (req, res) {
+  ethnicMarket.findById(req.params.id, function (err, shop) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render('comments/new', { market: shop });
+    }
+  });
+});
+
+// CREATE Comment route
+app.post('/market/:id/comments', function (req, res) {
+  ethnicMarket.findById(req.params.id, function (err, shop) {
+    if (err) {
+      console.log(err);
+      res.redirect('/market');
+    } else {
+      // req.body.comment contains text and author of comment
+      // in new.ejs text and author are grouped: comment[text] and comment[author]
+      Comment.create(req.body.comment, function (err, comment) {
+        if (err) {
+          console.log(err);
+        } else {
+          shop.comments.push(comment);
+          shop.save();
+          res.redirect('/market/' + shop._id);
+        }
+      });
+    }
+  });
 });
 
 app.listen(3000, process.env.IP, function () {
