@@ -1,15 +1,52 @@
 <%- include("../partials/header") %>
-<h1><%=market.name %></h1>
 
-<img src="<%=market.image %>" />
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <p class="lead">EthnicMarket</p>
+      <div class="list-group">
+        <li class="list-group-item active"></li>
+        <li class="list-group-item"></li>
+        <li class="list-group-item"></li>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="card" style="">
+        <img class="card-img-top img-responsive" src="<%= market.image %>" alt="Card image cap" />
+        <div class="card-body">
+          <div class="caption">
+            <h4><a href=""><%= market.name %></a></h4>
+          </div>
+          <p class="card-text">
+            <%=market.description %>
+          </p>
+        </div>
+      </div>
 
-<p><%=market.description %></p>
+      <div class="well">
+        <div class="text-right">
+          <p>
+            <a class="btn btn-success" href="/market/<%=market._id%>/comments/new"
+              >Add new comment</a
+            >
+          </p>
+        </div>
 
-<p><a class="btn btn-success" href="/market/<%=market._id%>/comments/new">Add new comment</a></p>
-
-<% market.comments.forEach(function(comment){ %>
-<p><strong><%= comment.author%></strong> - <%= comment.text%></p>
-<% }); %>
+        <% market.comments.forEach(function(comment){ %>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="comment">
+              <strong><%= comment.author%></strong>
+              <span class="pull-right"> N days ago</span>
+              <p><%= comment.text%></p>
+            </div>
+          </div>
+        </div>
+        <% }); %>
+      </div>
+    </div>
+  </div>
+</div>
 
 <br />
 <%- include("../partials/footer") %>

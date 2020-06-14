@@ -15,6 +15,7 @@ mongoose.connect(
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(__dirname + '/public')); // __dirname - refers to directory where this file is running
 // seed: empties db and seeds with some data - easier to check if next models (comments) work
 seedDB();
 

@@ -8,19 +8,23 @@ var data = [
   {
     name: 'Grønland Torg',
     image: 'https://pbs.twimg.com/media/A8YxpuiCAAACxgY.jpg',
-    description: 'busy place',
+    description:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit impedit hic quo corporis tempore debitis aliquam commodi cumque, iure odit dolore in autem fugiat soluta cum architecto harum labore! Praesentium!',
   },
   {
     name: 'Brugata Torg',
     image: 'https://mappno.com/yer/gr-nlandtorg-frukt-gr-nt-3225.jpg',
-    description: '3 mins from center',
+    description:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit impedit hic quo corporis tempore debitis aliquam commodi cumque, iure odit dolore in autem fugiat soluta cum architecto harum labore! Praesentium!',
   },
   {
     name: 'Lambertseter Torg',
     image: 'https://s3-media0.fl.yelpcdn.com/bphoto/LpU0vCDv6fqLSNRF45d64Q/300s.jpg',
-    description: 'mall shop',
+    description:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit impedit hic quo corporis tempore debitis aliquam commodi cumque, iure odit dolore in autem fugiat soluta cum architecto harum labore! Praesentium!',
   },
 ];
+
 function seedDB() {
   // removing shops
   Market.remove({}, function (err) {
