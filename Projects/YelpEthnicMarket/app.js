@@ -3,8 +3,11 @@ var express = require('express'),
   app = express(),
   bodyParser = require('body-parser'),
   mongoose = require('mongoose'),
+  passport = require('passport'),
+  localStrategy = require('passport-local'),
   ethnicMarket = require('./models/market'),
   Comment = require('./models/comment'),
+  User = require('./models/user'),
   seedDB = require('./seeds');
 
 mongoose.set('useNewUrlParser', true);
@@ -18,6 +21,27 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public')); // __dirname - refers to directory where this file is running
 // seed: empties db and seeds with some data - easier to check if next models (comments) work
 seedDB();
+
+// PASS CONFIGURATION
+app.use(
+  require('express-session')({
+    secret: 'HIIIII',
+    resave: false,
+    saveUninitialized: false,
+  }),
+);
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new localStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+// middleware which pass currentUser:req.user to all ejs in all routes
+// function will be called in all routes
+app.use(function (req, res, next) {
+  res.locals.currentUser = req.user;
+  next();
+});
 
 //
 app.get('/', function (req, res) {
@@ -73,7 +97,7 @@ app.get('/market/:id', function (req, res) {
 });
 
 // NEW Comment route
-app.get('/market/:id/comments/new', function (req, res) {
+app.get('/market/:id/comments/new', isLoggedIn, function (req, res) {
   ethnicMarket.findById(req.params.id, function (err, shop) {
     if (err) {
       console.log(err);
@@ -84,7 +108,7 @@ app.get('/market/:id/comments/new', function (req, res) {
 });
 
 // CREATE Comment route
-app.post('/market/:id/comments', function (req, res) {
+app.post('/market/:id/comments', isLoggedIn, function (req, res) {
   ethnicMarket.findById(req.params.id, function (err, shop) {
     if (err) {
       console.log(err);
@@ -104,6 +128,56 @@ app.post('/market/:id/comments', function (req, res) {
     }
   });
 });
+
+// AUTH ROUTES
+// show register form
+app.get('/register', function (req, res) {
+  res.render('register');
+});
+
+// handle sign up logic
+app.post('/register', function (req, res) {
+  var newUser = new User({ username: req.body.username });
+  User.register(newUser, req.body.password, function (err, user) {
+    if (err) {
+      console.log(err);
+      return res.render('register');
+    }
+    passport.authenticate('local')(req, res, function () {
+      res.redirect('/market');
+    });
+  });
+});
+
+// show login form
+app.get('/login', function (req, res) {
+  res.render('login');
+});
+
+// handling login logic
+app.post(
+  '/login',
+  passport.authenticate('local', {
+    successRedirect: '/market',
+    failureRedirect: '/login',
+  }),
+  function (req, res) {},
+);
+
+// logout route
+app.get('/logout', function (req, res) {
+  req.logOut();
+  res.redirect('/market');
+});
+
+// middleware - checks if user is logged in;
+// put in crate new comment route
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login');
+}
 
 app.listen(3000, process.env.IP, function () {
   console.log('YelpEthnicMarket server has started!');
