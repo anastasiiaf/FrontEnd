@@ -10,6 +10,10 @@ var express = require('express'),
   User = require('./models/user'),
   seedDB = require('./seeds');
 
+var marketRoutes = require('./routes/market'),
+  commentRoutes = require('./routes/comments'),
+  indexRoutes = require('./routes/index');
+
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 mongoose.connect(
@@ -43,141 +47,9 @@ app.use(function (req, res, next) {
   next();
 });
 
-//
-app.get('/', function (req, res) {
-  res.render('landing');
-});
-
-// INDEX - show all shops in the market
-app.get('/market', function (req, res) {
-  ethnicMarket.find({}, function (err, shops) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.render('market/index', { market: shops });
-    }
-  });
-});
-
-// CREATE - add new shop to the market
-app.post('/market', function (req, res) {
-  var name = req.body.name;
-  var image = req.body.image;
-  var description = req.body.description;
-  var newShop = { name: name, image: image, description: description };
-  ethnicMarket.create(newShop, function (err, shop) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.redirect('/market'); // default is to redirect as GET route
-    }
-  });
-});
-
-// NEW - show form to create a new shop
-app.get('/market/new', function (req, res) {
-  res.render('market/new');
-});
-
-// SHOW - shows more info about shop
-// '/market/:id' - this rout should be after '/market/new' GET rout
-// otherwise, it will be overwritten
-app.get('/market/:id', function (req, res) {
-  ethnicMarket
-    .findById(req.params.id)
-    .populate('comments')
-    .exec(function (err, foundShop) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(foundShop);
-        res.render('market/show', { market: foundShop });
-      }
-    });
-});
-
-// NEW Comment route
-app.get('/market/:id/comments/new', isLoggedIn, function (req, res) {
-  ethnicMarket.findById(req.params.id, function (err, shop) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.render('comments/new', { market: shop });
-    }
-  });
-});
-
-// CREATE Comment route
-app.post('/market/:id/comments', isLoggedIn, function (req, res) {
-  ethnicMarket.findById(req.params.id, function (err, shop) {
-    if (err) {
-      console.log(err);
-      res.redirect('/market');
-    } else {
-      // req.body.comment contains text and author of comment
-      // in new.ejs text and author are grouped: comment[text] and comment[author]
-      Comment.create(req.body.comment, function (err, comment) {
-        if (err) {
-          console.log(err);
-        } else {
-          shop.comments.push(comment);
-          shop.save();
-          res.redirect('/market/' + shop._id);
-        }
-      });
-    }
-  });
-});
-
-// AUTH ROUTES
-// show register form
-app.get('/register', function (req, res) {
-  res.render('register');
-});
-
-// handle sign up logic
-app.post('/register', function (req, res) {
-  var newUser = new User({ username: req.body.username });
-  User.register(newUser, req.body.password, function (err, user) {
-    if (err) {
-      console.log(err);
-      return res.render('register');
-    }
-    passport.authenticate('local')(req, res, function () {
-      res.redirect('/market');
-    });
-  });
-});
-
-// show login form
-app.get('/login', function (req, res) {
-  res.render('login');
-});
-
-// handling login logic
-app.post(
-  '/login',
-  passport.authenticate('local', {
-    successRedirect: '/market',
-    failureRedirect: '/login',
-  }),
-  function (req, res) {},
-);
-
-// logout route
-app.get('/logout', function (req, res) {
-  req.logOut();
-  res.redirect('/market');
-});
-
-// middleware - checks if user is logged in;
-// put in crate new comment route
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/login');
-}
+app.use(indexRoutes);
+app.use(marketRoutes);
+app.use(commentRoutes);
 
 app.listen(3000, process.env.IP, function () {
   console.log('YelpEthnicMarket server has started!');
