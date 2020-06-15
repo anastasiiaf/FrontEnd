@@ -1,10 +1,21 @@
 var express = require('express');
-var router = express.Router();
+var router = express.Router({ mergeParams: true }); // merge params from market and comments to access /market/:id/comments
 var ethnicMarket = require('../models/market');
 var Comment = require('../models/comment');
 
+// NEW Comment route
+router.get('/new', isLoggedIn, function (req, res) {
+  ethnicMarket.findById(req.params.id, function (err, shop) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render('comments/new', { market: shop });
+    }
+  });
+});
+
 // CREATE Comment route
-router.post('/market/:id/comments', isLoggedIn, function (req, res) {
+router.post('/', isLoggedIn, function (req, res) {
   ethnicMarket.findById(req.params.id, function (err, shop) {
     if (err) {
       console.log(err);
@@ -21,17 +32,6 @@ router.post('/market/:id/comments', isLoggedIn, function (req, res) {
           res.redirect('/market/' + shop._id);
         }
       });
-    }
-  });
-});
-
-// NEW Comment route
-router.get('/market/:id/comments/new', isLoggedIn, function (req, res) {
-  ethnicMarket.findById(req.params.id, function (err, shop) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.render('comments/new', { market: shop });
     }
   });
 });

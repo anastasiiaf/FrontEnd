@@ -3,7 +3,7 @@ var router = express.Router();
 var ethnicMarket = require('../models/market');
 
 // INDEX - show all shops in the market
-router.get('/market', function (req, res) {
+router.get('/', function (req, res) {
   ethnicMarket.find({}, function (err, shops) {
     if (err) {
       console.log(err);
@@ -14,7 +14,7 @@ router.get('/market', function (req, res) {
 });
 
 // CREATE - add new shop to the market
-router.post('/market', function (req, res) {
+router.post('/', function (req, res) {
   var name = req.body.name;
   var image = req.body.image;
   var description = req.body.description;
@@ -29,14 +29,14 @@ router.post('/market', function (req, res) {
 });
 
 // NEW - show form to create a new shop
-router.get('/market/new', function (req, res) {
+router.get('/new', function (req, res) {
   res.render('market/new');
 });
 
 // SHOW - shows more info about shop
 // '/market/:id' - this rout should be after '/market/new' GET rout
 // otherwise, it will be overwritten
-router.get('/market/:id', function (req, res) {
+router.get('/:id', function (req, res) {
   ethnicMarket
     .findById(req.params.id)
     .populate('comments')

@@ -47,9 +47,9 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use(indexRoutes);
-app.use(marketRoutes);
-app.use(commentRoutes);
+app.use('/', indexRoutes);
+app.use('/market', marketRoutes);
+app.use('/market/:id/comments', commentRoutes);
 
 app.listen(3000, process.env.IP, function () {
   console.log('YelpEthnicMarket server has started!');
