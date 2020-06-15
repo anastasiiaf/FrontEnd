@@ -14,11 +14,15 @@ router.get('/', function (req, res) {
 });
 
 // CREATE - add new shop to the market
-router.post('/', function (req, res) {
+router.post('/', isLoggedIn, function (req, res) {
   var name = req.body.name;
   var image = req.body.image;
   var description = req.body.description;
-  var newShop = { name: name, image: image, description: description };
+  var author = {
+    id: req.user._id,
+    username: req.user.username,
+  };
+  var newShop = { name: name, image: image, description: description, author: author };
   ethnicMarket.create(newShop, function (err, shop) {
     if (err) {
       console.log(err);
@@ -29,7 +33,7 @@ router.post('/', function (req, res) {
 });
 
 // NEW - show form to create a new shop
-router.get('/new', function (req, res) {
+router.get('/new', isLoggedIn, function (req, res) {
   res.render('market/new');
 });
 
@@ -49,5 +53,14 @@ router.get('/:id', function (req, res) {
       }
     });
 });
+
+// middleware - checks if user is logged in;
+// put in crate new comment route
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login');
+}
 
 module.exports = router;

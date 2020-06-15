@@ -20,6 +20,9 @@
           <p class="card-text">
             <%=market.description %>
           </p>
+          <p>
+            <em>Submitted by <%=market.author.username %></em>
+          </p>
         </div>
       </div>
 
@@ -36,7 +39,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="comment">
-              <strong><%= comment.author%></strong>
+              <strong><%= comment.author.username%></strong>
               <span class="pull-right"> N days ago</span>
               <p><%= comment.text%></p>
             </div>
