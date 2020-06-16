@@ -69,6 +69,15 @@ router.put('/:comment_id', function (req, res) {
 });
 
 // DESTROY ROUTE
+router.delete('/:comment_id', function (req, res) {
+  Comment.findByIdAndRemove(req.params.comment_id, function (err) {
+    if (err) {
+      res.redirect('back');
+    } else {
+      res.redirect('/market/' + req.params.id);
+    }
+  });
+});
 
 // middleware - checks if user is logged in;
 // put in crate new comment route

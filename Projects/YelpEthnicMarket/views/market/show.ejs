@@ -26,7 +26,7 @@
 
           <% if (currentUser && market.author.id.equals(currentUser._id)){ %>
           <a class="btn btn-warning" href="/market/<%=market._id%>/edit">Edit</a>
-          <form id="delete-form" action="/market/<%=market._id%>?_method=DELETE" method="POST">
+          <form class="delete-form" action="/market/<%=market._id%>?_method=DELETE" method="POST">
             <button class="btn btn-danger">Delete</button>
           </form>
           <% };%>
@@ -54,6 +54,13 @@
                 href="/market/<%= market._id%>/comments/<%= comment._id%>/edit"
                 >Edit</a
               >
+              <form
+                class="delete-form"
+                action="/market/<%= market._id%>/comments/<%= comment._id%>?_method=DELETE"
+                method="POST"
+              >
+                <button class="btn btn-danger">Delete</button>
+              </form>
             </div>
           </div>
         </div>
