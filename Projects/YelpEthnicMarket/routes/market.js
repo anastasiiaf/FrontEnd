@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var ethnicMarket = require('../models/market');
+var middleware = require('../middleware');
 
 // INDEX - show all shops in the market
 router.get('/', function (req, res) {
@@ -14,7 +15,7 @@ router.get('/', function (req, res) {
 });
 
 // CREATE - add new shop to the market
-router.post('/', isLoggedIn, function (req, res) {
+router.post('/', middleware.isLoggedIn, function (req, res) {
   var name = req.body.name;
   var image = req.body.image;
   var description = req.body.description;
@@ -33,7 +34,7 @@ router.post('/', isLoggedIn, function (req, res) {
 });
 
 // NEW - show form to create a new shop
-router.get('/new', isLoggedIn, function (req, res) {
+router.get('/new', middleware.isLoggedIn, function (req, res) {
   res.render('market/new');
 });
 
@@ -55,53 +56,24 @@ router.get('/:id', function (req, res) {
 });
 
 // EDIT ROUTE
-router.get('/:id/edit', checkShopOwnership, function (req, res) {
+router.get('/:id/edit', middleware.checkShopOwnership, function (req, res) {
   ethnicMarket.findById(req.params.id, function (err, foundShop) {
     res.render('market/edit', { market: foundShop });
   });
 });
 
 // UPDATE ROUTE
-router.put('/:id', checkShopOwnership, function (req, res) {
+router.put('/:id', middleware.checkShopOwnership, function (req, res) {
   ethnicMarket.findByIdAndUpdate(req.params.id, req.body.market, function (err, updatedShop) {
     res.redirect('/market/' + req.params.id);
   });
 });
 
 // DESTROY ROUTE
-router.delete('/:id', checkShopOwnership, function (req, res) {
+router.delete('/:id', middleware.checkShopOwnership, function (req, res) {
   ethnicMarket.findByIdAndRemove(req.params.id, function (err) {
     res.redirect('/market');
   });
 });
-
-// middleware - checks if user is logged in;
-// put in crate new comment route
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/login');
-}
-
-function checkShopOwnership(req, res, next) {
-  if (req.isAuthenticated()) {
-    ethnicMarket.findById(req.params.id, function (err, foundShop) {
-      if (err) {
-        res.redirect('back');
-      } else {
-        // checking user ownership (authorization) using .equals mongoose method
-        // foundShop.author.id - mongoose object, req.user._id - string
-        if (foundShop.author.id.equals(req.user._id)) {
-          next();
-        } else {
-          res.redirect('back');
-        }
-      }
-    });
-  } else {
-    res.redirect('back');
-  }
-}
 
 module.exports = router;

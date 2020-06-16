@@ -2,9 +2,10 @@ var express = require('express');
 var router = express.Router({ mergeParams: true }); // merge params from market and comments to access /market/:id/comments
 var ethnicMarket = require('../models/market');
 var Comment = require('../models/comment');
+var middleware = require('../middleware');
 
 // NEW Comment route
-router.get('/new', isLoggedIn, function (req, res) {
+router.get('/new', middleware.isLoggedIn, function (req, res) {
   ethnicMarket.findById(req.params.id, function (err, shop) {
     if (err) {
       console.log(err);
@@ -15,7 +16,7 @@ router.get('/new', isLoggedIn, function (req, res) {
 });
 
 // CREATE Comment route
-router.post('/', isLoggedIn, function (req, res) {
+router.post('/', middleware.isLoggedIn, function (req, res) {
   ethnicMarket.findById(req.params.id, function (err, shop) {
     if (err) {
       console.log(err);
@@ -40,7 +41,7 @@ router.post('/', isLoggedIn, function (req, res) {
 });
 
 // EDIT ROUTE
-router.get('/:comment_id/edit', checkCommentOwnership, function (req, res) {
+router.get('/:comment_id/edit', middleware.checkCommentOwnership, function (req, res) {
   Comment.findById(req.params.comment_id, function (err, foundComment) {
     if (err) {
       res.redirect('back');
@@ -55,7 +56,7 @@ router.get('/:comment_id/edit', checkCommentOwnership, function (req, res) {
 });
 
 // UPDATE ROUTE
-router.put('/:comment_id', checkCommentOwnership, function (req, res) {
+router.put('/:comment_id', middleware.checkCommentOwnership, function (req, res) {
   Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function (
     err,
     updatedComment,
@@ -69,7 +70,7 @@ router.put('/:comment_id', checkCommentOwnership, function (req, res) {
 });
 
 // DESTROY ROUTE
-router.delete('/:comment_id', checkCommentOwnership, function (req, res) {
+router.delete('/:comment_id', middleware.checkCommentOwnership, function (req, res) {
   Comment.findByIdAndRemove(req.params.comment_id, function (err) {
     if (err) {
       res.redirect('back');
@@ -78,34 +79,5 @@ router.delete('/:comment_id', checkCommentOwnership, function (req, res) {
     }
   });
 });
-
-// middleware - checks if user is logged in;
-// put in crate new comment route
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/login');
-}
-
-function checkCommentOwnership(req, res, next) {
-  if (req.isAuthenticated()) {
-    Comment.findById(req.params.comment_id, function (err, foundComment) {
-      if (err) {
-        res.redirect('back');
-      } else {
-        // checking user ownership (authorization) using .equals mongoose method
-        // foundShop.author.id - mongoose object, req.user._id - string
-        if (foundComment.author.id.equals(req.user._id)) {
-          next();
-        } else {
-          res.redirect('back');
-        }
-      }
-    });
-  } else {
-    res.redirect('back');
-  }
-}
 
 module.exports = router;
