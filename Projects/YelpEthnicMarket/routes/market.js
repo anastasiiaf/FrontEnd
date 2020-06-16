@@ -55,35 +55,23 @@ router.get('/:id', function (req, res) {
 });
 
 // EDIT ROUTE
-router.get('/:id/edit', function (req, res) {
+router.get('/:id/edit', checkShopOwnership, function (req, res) {
   ethnicMarket.findById(req.params.id, function (err, foundShop) {
-    if (err) {
-      res.redirect('/market');
-    } else {
-      res.render('market/edit', { market: foundShop });
-    }
+    res.render('market/edit', { market: foundShop });
   });
 });
 
 // UPDATE ROUTE
-router.put('/:id', function (req, res) {
+router.put('/:id', checkShopOwnership, function (req, res) {
   ethnicMarket.findByIdAndUpdate(req.params.id, req.body.market, function (err, updatedShop) {
-    if (err) {
-      res.redirect('/market');
-    } else {
-      res.redirect('/market/' + req.params.id);
-    }
+    res.redirect('/market/' + req.params.id);
   });
 });
 
 // DESTROY ROUTE
-router.delete('/:id', function (req, res) {
+router.delete('/:id', checkShopOwnership, function (req, res) {
   ethnicMarket.findByIdAndRemove(req.params.id, function (err) {
-    if (err) {
-      res.redirect('/market');
-    } else {
-      res.redirect('/market');
-    }
+    res.redirect('/market');
   });
 });
 
@@ -94,6 +82,26 @@ function isLoggedIn(req, res, next) {
     return next();
   }
   res.redirect('/login');
+}
+
+function checkShopOwnership(req, res, next) {
+  if (req.isAuthenticated()) {
+    ethnicMarket.findById(req.params.id, function (err, foundShop) {
+      if (err) {
+        res.redirect('back');
+      } else {
+        // checking user ownership (authorization) using .equals mongoose method
+        // foundShop.author.id - mongoose object, req.user._id - string
+        if (foundShop.author.id.equals(req.user._id)) {
+          next();
+        } else {
+          res.redirect('back');
+        }
+      }
+    });
+  } else {
+    res.redirect('back');
+  }
 }
 
 module.exports = router;
