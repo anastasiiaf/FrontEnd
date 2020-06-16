@@ -54,6 +54,28 @@ router.get('/:id', function (req, res) {
     });
 });
 
+// EDIT ROUTE
+router.get('/:id/edit', function (req, res) {
+  ethnicMarket.findById(req.params.id, function (err, foundShop) {
+    if (err) {
+      res.redirect('/market');
+    } else {
+      res.render('market/edit', { market: foundShop });
+    }
+  });
+});
+
+// UPDATE ROUTE
+router.put('/:id', function (req, res) {
+  ethnicMarket.findByIdAndUpdate(req.params.id, req.body.market, function (err, updatedShop) {
+    if (err) {
+      res.redirect('/market');
+    } else {
+      res.redirect('/market/' + req.params.id);
+    }
+  });
+});
+
 // middleware - checks if user is logged in;
 // put in crate new comment route
 function isLoggedIn(req, res, next) {

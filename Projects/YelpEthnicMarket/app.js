@@ -5,6 +5,7 @@ var express = require('express'),
   mongoose = require('mongoose'),
   passport = require('passport'),
   localStrategy = require('passport-local'),
+  methodOverride = require('method-override'),
   ethnicMarket = require('./models/market'),
   Comment = require('./models/comment'),
   User = require('./models/user'),
@@ -25,6 +26,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public')); // __dirname - refers to directory where this file is running
 // seed: empties db and seeds with some data - easier to check if next models (comments) work
 //seedDB();
+
+app.use(methodOverride('_method'));
 
 // PASS CONFIGURATION
 app.use(
