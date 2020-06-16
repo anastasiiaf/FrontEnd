@@ -49,6 +49,11 @@
               <strong><%= comment.author.username%></strong>
               <span class="pull-right"> N days ago</span>
               <p><%= comment.text%></p>
+              <a
+                class="btn btn-warning"
+                href="/market/<%= market._id%>/comments/<%= comment._id%>/edit"
+                >Edit</a
+              >
             </div>
           </div>
         </div>

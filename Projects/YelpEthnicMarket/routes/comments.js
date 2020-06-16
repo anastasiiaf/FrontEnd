@@ -39,6 +39,37 @@ router.post('/', isLoggedIn, function (req, res) {
   });
 });
 
+// EDIT ROUTE
+router.get('/:comment_id/edit', function (req, res) {
+  Comment.findById(req.params.comment_id, function (err, foundComment) {
+    if (err) {
+      res.redirect('back');
+    } else {
+      res.render('comments/edit', {
+        market_id: req.params.id,
+
+        comment: foundComment,
+      });
+    }
+  });
+});
+
+// UPDATE ROUTE
+router.put('/:comment_id', function (req, res) {
+  Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function (
+    err,
+    updatedComment,
+  ) {
+    if (err) {
+      res.redirect('back');
+    } else {
+      res.redirect('/market/' + req.params.id);
+    }
+  });
+});
+
+// DESTROY ROUTE
+
 // middleware - checks if user is logged in;
 // put in crate new comment route
 function isLoggedIn(req, res, next) {
