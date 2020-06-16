@@ -5,3 +5,7 @@
 .comment {
   padding: 5px 20px;
 }
+
+#delete-form {
+  display: inline;
+}

@@ -24,6 +24,9 @@
             <em>Submitted by <%=market.author.username %></em>
           </p>
           <a class="btn btn-warning" href="/market/<%=market._id%>/edit">Edit</a>
+          <form id="delete-form" action="/market/<%=market._id%>?_method=DELETE" method="POST">
+            <button class="btn btn-danger">Delete</button>
+          </form>
         </div>
       </div>
 

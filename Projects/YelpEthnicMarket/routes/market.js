@@ -76,6 +76,17 @@ router.put('/:id', function (req, res) {
   });
 });
 
+// DESTROY ROUTE
+router.delete('/:id', function (req, res) {
+  ethnicMarket.findByIdAndRemove(req.params.id, function (err) {
+    if (err) {
+      res.redirect('/market');
+    } else {
+      res.redirect('/market');
+    }
+  });
+});
+
 // middleware - checks if user is logged in;
 // put in crate new comment route
 function isLoggedIn(req, res, next) {
