@@ -3,6 +3,7 @@ var router = express.Router({ mergeParams: true }); // merge params from market 
 var ethnicMarket = require('../models/market');
 var Comment = require('../models/comment');
 var middleware = require('../middleware');
+var moment = require('moment');
 
 // NEW Comment route
 router.get('/new', middleware.isLoggedIn, function (req, res) {
@@ -31,6 +32,7 @@ router.post('/', middleware.isLoggedIn, function (req, res) {
         } else {
           comment.author.id = req.user._id;
           comment.author.username = req.user.username;
+          comment.created = moment().format('lll');
           comment.save();
           shop.comments.push(comment);
           shop.save();
@@ -48,9 +50,9 @@ router.get('/:comment_id/edit', middleware.checkCommentOwnership, function (req,
     if (err) {
       res.redirect('back');
     } else {
+      foundComment.created = String(moment().format('lll'));
       res.render('comments/edit', {
         market_id: req.params.id,
-
         comment: foundComment,
       });
     }
@@ -59,6 +61,7 @@ router.get('/:comment_id/edit', middleware.checkCommentOwnership, function (req,
 
 // UPDATE ROUTE
 router.put('/:comment_id', middleware.checkCommentOwnership, function (req, res) {
+  req.body.comment.created = moment().format('lll');
   Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function (
     err,
     updatedComment,

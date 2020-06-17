@@ -51,7 +51,7 @@ router.get('/:id', function (req, res) {
       if (err) {
         console.log(err);
       } else {
-        console.log(foundShop);
+        //console.log(foundShop);
         res.render('market/show', { market: foundShop });
       }
     });
