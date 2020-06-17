@@ -26,6 +26,7 @@ router.post('/', middleware.isLoggedIn, function (req, res) {
       // in new.ejs text and author are grouped: comment[text] and comment[author]
       Comment.create(req.body.comment, function (err, comment) {
         if (err) {
+          req.flash('error', 'Something went wrong');
           console.log(err);
         } else {
           comment.author.id = req.user._id;
@@ -33,6 +34,7 @@ router.post('/', middleware.isLoggedIn, function (req, res) {
           comment.save();
           shop.comments.push(comment);
           shop.save();
+          req.flash('success', 'Successfully added comment');
           res.redirect('/market/' + shop._id);
         }
       });
@@ -64,6 +66,7 @@ router.put('/:comment_id', middleware.checkCommentOwnership, function (req, res)
     if (err) {
       res.redirect('back');
     } else {
+      req.flash('success', 'Successfully updated comment');
       res.redirect('/market/' + req.params.id);
     }
   });
@@ -75,6 +78,7 @@ router.delete('/:comment_id', middleware.checkCommentOwnership, function (req, r
     if (err) {
       res.redirect('back');
     } else {
+      req.flash('success', 'Successfully deleted comment');
       res.redirect('/market/' + req.params.id);
     }
   });

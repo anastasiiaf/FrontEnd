@@ -26,8 +26,10 @@ router.post('/', middleware.isLoggedIn, function (req, res) {
   var newShop = { name: name, image: image, description: description, author: author };
   ethnicMarket.create(newShop, function (err, shop) {
     if (err) {
+      req.flash('error', 'Shop already exists');
       console.log(err);
     } else {
+      req.flash('success', 'Successfully added shop');
       res.redirect('/market'); // default is to redirect as GET route
     }
   });
@@ -65,6 +67,7 @@ router.get('/:id/edit', middleware.checkShopOwnership, function (req, res) {
 // UPDATE ROUTE
 router.put('/:id', middleware.checkShopOwnership, function (req, res) {
   ethnicMarket.findByIdAndUpdate(req.params.id, req.body.market, function (err, updatedShop) {
+    req.flash('success', 'Successfully updated shop');
     res.redirect('/market/' + req.params.id);
   });
 });
@@ -72,6 +75,7 @@ router.put('/:id', middleware.checkShopOwnership, function (req, res) {
 // DESTROY ROUTE
 router.delete('/:id', middleware.checkShopOwnership, function (req, res) {
   ethnicMarket.findByIdAndRemove(req.params.id, function (err) {
+    req.flash('success', 'Successfully deleted shop');
     res.redirect('/market');
   });
 });

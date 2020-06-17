@@ -3,6 +3,7 @@ var express = require('express'),
   app = express(),
   bodyParser = require('body-parser'),
   mongoose = require('mongoose'),
+  flash = require('connect-flash'),
   passport = require('passport'),
   localStrategy = require('passport-local'),
   methodOverride = require('method-override'),
@@ -28,6 +29,7 @@ app.use(express.static(__dirname + '/public')); // __dirname - refers to directo
 //seedDB();
 
 app.use(methodOverride('_method'));
+app.use(flash());
 
 // PASS CONFIGURATION
 app.use(
@@ -47,6 +49,8 @@ passport.deserializeUser(User.deserializeUser());
 // function will be called in all routes
 app.use(function (req, res, next) {
   res.locals.currentUser = req.user;
+  res.locals.error = req.flash('error');
+  res.locals.success = req.flash('success');
   next();
 });
 

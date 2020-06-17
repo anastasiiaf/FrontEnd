@@ -6,6 +6,7 @@ middlewareObj.checkShopOwnership = function (req, res, next) {
   if (req.isAuthenticated()) {
     ethnicMarket.findById(req.params.id, function (err, foundShop) {
       if (err) {
+        req.flash('error', 'Shop not found');
         res.redirect('back');
       } else {
         // checking user ownership (authorization) using .equals mongoose method
@@ -13,11 +14,13 @@ middlewareObj.checkShopOwnership = function (req, res, next) {
         if (foundShop.author.id.equals(req.user._id)) {
           next();
         } else {
+          req.flash('error', 'You do not have permission to do that');
           res.redirect('back');
         }
       }
     });
   } else {
+    req.flash('error', 'You need to login first!');
     res.redirect('back');
   }
 };
@@ -33,11 +36,13 @@ middlewareObj.checkCommentOwnership = function (req, res, next) {
         if (foundComment.author.id.equals(req.user._id)) {
           next();
         } else {
+          req.flash('error', 'You do not have permission to do that');
           res.redirect('back');
         }
       }
     });
   } else {
+    req.flash('error', 'You need to login first!');
     res.redirect('back');
   }
 };
@@ -48,6 +53,7 @@ middlewareObj.isLoggedIn = function (req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
+  req.flash('error', 'You need to login first!');
   res.redirect('/login');
 };
 
