@@ -28,3 +28,22 @@ function Motorcycle(make, model, year) {
 
 var motorcycle = new Motorcycle('AB', 'XL', 2010);
 console.log(motorcycle);
+
+//Prototypes
+function Vehicle(make, model, year) {
+  this.make = make;
+  this.model = model;
+  this.year = year;
+  this.isRunning = false;
+}
+Vehicle.prototype.turnOn = function () {
+  this.isRunning = true;
+  this.honk = 'BEEP';
+};
+Vehicle.prototype.turnOff = function () {
+  this.isRunning = false;
+};
+
+var motorcycle2 = new Vehicle('AB', 'XL', 2010);
+motorcycle2.turnOn();
+console.log(motorcycle2);
