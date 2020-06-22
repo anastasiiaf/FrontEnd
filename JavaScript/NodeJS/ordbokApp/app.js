@@ -9,32 +9,16 @@ var options = { word: 'lese' };
 const stripHtml = require('string-strip-html');
 const { extract } = require('article-parser');
 
-const url = 'https://www.klartale.no/norge/mener-folk-betaler-for-mye-for-mat-1.1733276';
+//const url = 'https://www.klartale.no/norge/mener-folk-betaler-for-mye-for-mat-1.1733276';
 
-extract(url)
+/* extract(url)
   .then((article) => {
     console.log(stripHtml(article.content));
   })
   .catch((err) => {
     console.log(err);
   });
-
-/* 
-app.get('/results', function (req, res) {
-  var query = req.query.search;
-  var url = 'http://tekstlab.uio.no/ordforradet/nb';
-  request(url, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      var data = JSON.parse(body);
-      //res.send(data);
-      res.render('results', { data: data });
-    }
-  });
-});
-
-app.listen(3000, process.env.IP, function () {
-  console.log('Server has started!');
-}); */
+ */
 
 ordbok(options, function (error, data) {
   //console.log(data);
@@ -42,3 +26,35 @@ ordbok(options, function (error, data) {
   //console.log(data['bokmal'][0]['interpretation']);
   //console.log(data['bokmal'][0]['interpretation'][0]['definition']);
 });
+
+// wiki api
+const fetch = require('node-fetch');
+var url = 'https://en.wikiquote.org/w/api.php';
+
+var params = {
+  action: 'query',
+  //list: 'search',
+  titles: 'Family Guy/Season 2',
+  prop: 'extracts',
+  format: 'json',
+};
+
+url = url + '?origin=*';
+Object.keys(params).forEach(function (key) {
+  url += '&' + key + '=' + params[key];
+});
+
+fetch(url)
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (response) {
+    console.log(response.query.pages);
+
+    /* if (response.query.search[0].title === 'Family Guy/Season 1') {
+      console.log("Your search page 'Family Guy/Season 1' exists on English Wikipedia");
+    } */
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
