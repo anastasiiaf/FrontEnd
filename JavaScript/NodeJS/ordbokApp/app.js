@@ -5,6 +5,21 @@ var app = express();
 app.set('view engine', 'ejs');
 var options = { word: 'lese' };
 
+//var striptags = require('striptags');
+const stripHtml = require('string-strip-html');
+const { extract } = require('article-parser');
+
+const url = 'https://www.klartale.no/norge/mener-folk-betaler-for-mye-for-mat-1.1733276';
+
+extract(url)
+  .then((article) => {
+    console.log(stripHtml(article.content));
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+/* 
 app.get('/results', function (req, res) {
   var query = req.query.search;
   var url = 'http://tekstlab.uio.no/ordforradet/nb';
@@ -19,11 +34,11 @@ app.get('/results', function (req, res) {
 
 app.listen(3000, process.env.IP, function () {
   console.log('Server has started!');
-});
+}); */
 
 ordbok(options, function (error, data) {
-  console.log(data);
+  //console.log(data);
   //console.log(data['bokmal'][0]['paradigm']);
-  console.log(data['bokmal'][0]['interpretation']);
+  //console.log(data['bokmal'][0]['interpretation']);
   //console.log(data['bokmal'][0]['interpretation'][0]['definition']);
 });
