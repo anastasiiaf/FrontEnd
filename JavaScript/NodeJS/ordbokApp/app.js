@@ -31,6 +31,10 @@ ordbok(options, function (error, data) {
 const fetch = require('node-fetch');
 var url = 'https://en.wikiquote.org/w/api.php';
 
+const cb = ({ tag, deleteFrom, deleteTo, insert, rangesArr, proposedReturn }) => {
+  rangesArr.push(deleteFrom, deleteTo, insert);
+};
+
 var params = {
   action: 'query',
   titles: 'Family Guy/Season 2',
@@ -52,7 +56,21 @@ fetch(url)
     var pages = response.query.pages;
 
     Object.keys(pages).forEach(function (page) {
-      console.log(stripHtml(pages[page].extract, { ignoreTags: ['dl'] }));
+      var content = stripHtml(pages[page].extract, { ignoreTags: ['dl'] });
+      //console.log(content);
+      var rangesEpisode = stripHtml(content, { returnRangesOnly: true });
+      //console.log(JSON.stringify(ranges, null, 4));
+
+      for (var i = 0; i < rangesEpisode.length; i += 2) {
+        //console.log(ranges[0][0]);
+        var q = content.slice(rangesEpisode[i][0], rangesEpisode[i + 1][1]);
+        quotes.episode = quotes.push(stripHtml(q));
+      }
+      /* console.log(quotes);
+      console.log(ranges);
+      console.log(content); */
+
+      console.log(quotes[Math.floor(Math.random() * quotes.length)]);
     });
 
     /* if (response.query.search[0].title === 'Family Guy/Season 1') {
@@ -62,3 +80,10 @@ fetch(url)
   .catch(function (error) {
     console.log(error);
   });
+
+/* var a =
+  '<h3><span id="Peter.2C_Peter.2C_Caviar_Eater"></span><span id="Peter,_Peter,_Caviar_Eater"><i>Peter, Peter, Caviar Eater</i></span></h3><dl><dd><b>Peter</b>: Brian, teach me how to be a gentleman.</dd></dl>';
+var r = stripHtml(a, { ignoreTags: ['dl', 'h3'] });
+var rang = stripHtml(r, { ignoreTags: ['dl'], returnRangesOnly: true });
+console.log(r);
+console.log(rang); */
