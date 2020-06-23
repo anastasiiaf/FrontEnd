@@ -33,9 +33,9 @@ var url = 'https://en.wikiquote.org/w/api.php';
 
 var params = {
   action: 'query',
-  //list: 'search',
   titles: 'Family Guy/Season 2',
   prop: 'extracts',
+  //explaintext: true,
   format: 'json',
 };
 
@@ -49,7 +49,11 @@ fetch(url)
     return response.json();
   })
   .then(function (response) {
-    console.log(response.query.pages);
+    var pages = response.query.pages;
+
+    Object.keys(pages).forEach(function (page) {
+      console.log(stripHtml(pages[page].extract, { ignoreTags: ['dl'] }));
+    });
 
     /* if (response.query.search[0].title === 'Family Guy/Season 1') {
       console.log("Your search page 'Family Guy/Season 1' exists on English Wikipedia");
