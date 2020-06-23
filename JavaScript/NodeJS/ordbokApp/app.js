@@ -56,34 +56,78 @@ fetch(url)
     var pages = response.query.pages;
 
     Object.keys(pages).forEach(function (page) {
-      var content = stripHtml(pages[page].extract, { ignoreTags: ['dl'] });
+      var content = stripHtml(pages[page].extract, { ignoreTags: ['dl', 'h3'] });
       //console.log(content);
-      var rangesEpisode = stripHtml(content, { returnRangesOnly: true });
+      var episodesRanges = stripHtml(content, { ignoreTags: ['dl'], returnRangesOnly: true });
       //console.log(JSON.stringify(ranges, null, 4));
+      //console.log(episodesRanges);
+      var quotes = [];
+      var episode = {
+        title: String,
+        episodeQuotes: [],
+        episodeRange: [],
+      };
 
-      for (var i = 0; i < rangesEpisode.length; i += 2) {
+      for (var i = 0; i < episodesRanges.length; i += 2) {
         //console.log(ranges[0][0]);
-        var q = content.slice(rangesEpisode[i][0], rangesEpisode[i + 1][1]);
-        quotes.episode = quotes.push(stripHtml(q));
+        var q = content.slice(episodesRanges[i][0], episodesRanges[i + 1][1]);
+        episode.title = stripHtml(q);
+        var qr = [];
+        if (i + 2 < episodesRanges.length) {
+          qr = [episodesRanges[i + 1][1], episodesRanges[i + 2][0]];
+        } else {
+          qr = [episodesRanges[i + 1][1], content.length];
+        }
+        //console.log('Episode range');
+        //console.log(qr);
+        episode.episodeRange.push(qr);
+        quotes.push(episode);
+        episode = {
+          title: String,
+          episodeQuotes: [],
+          episodeRange: [],
+        };
       }
-      /* console.log(quotes);
-      console.log(ranges);
-      console.log(content); */
+      //console.log(quotes);
 
-      console.log(quotes[Math.floor(Math.random() * quotes.length)]);
+      quotes.forEach(function (item) {
+        var quotesInEpisode = [];
+        var episode = content.slice(item.episodeRange[0][0], item.episodeRange[0][1]);
+
+        /*   console.log('=======================================');
+        console.log(episode);
+        console.log(item.episodeRange); */
+        var quoteRange = stripHtml(episode, { returnRangesOnly: true });
+        //console.log(quoteRange, quoteRange.length);
+
+        var j = 0;
+        for (var i = 0; i < quoteRange.length - 1; i++) {
+          //console.log(quoteRange[i][0], quoteRange[i + 1][1]);
+          var quote = episode.slice(quoteRange[i][0], quoteRange[i + 1][1]);
+          quotesInEpisode.push(stripHtml(quote));
+        }
+
+        item.episodeQuotes.push(quotesInEpisode);
+
+        //console.log(quotesInEpisode);
+      });
+
+      //console.log(quotes[0].episodeQuotes[0]);
+
+      var randomSeed = Math.random();
+      var x = Math.floor(randomSeed * quotes.length);
+      var randomEpisode = quotes[x];
+      var y = Math.floor(randomSeed * randomEpisode.episodeQuotes.length);
+      var randomQuote = randomEpisode.episodeQuotes[0];
+      console.log(x, randomEpisode);
+      console.log(randomEpisode.title);
+      console.log(y, randomQuote[y]);
     });
 
-    /* if (response.query.search[0].title === 'Family Guy/Season 1') {
+    /*   if (response.query.search[0].title === 'Family Guy/Season 1') {
       console.log("Your search page 'Family Guy/Season 1' exists on English Wikipedia");
     } */
   })
   .catch(function (error) {
     console.log(error);
   });
-
-/* var a =
-  '<h3><span id="Peter.2C_Peter.2C_Caviar_Eater"></span><span id="Peter,_Peter,_Caviar_Eater"><i>Peter, Peter, Caviar Eater</i></span></h3><dl><dd><b>Peter</b>: Brian, teach me how to be a gentleman.</dd></dl>';
-var r = stripHtml(a, { ignoreTags: ['dl', 'h3'] });
-var rang = stripHtml(r, { ignoreTags: ['dl'], returnRangesOnly: true });
-console.log(r);
-console.log(rang); */
