@@ -28,38 +28,3 @@ ordbok(options, function (error, data) {
   //console.log(data['bokmal'][0]['interpretation']);
   //console.log(data['bokmal'][0]['interpretation'][0]['definition']);
 });
-
-const request = require('request');
-const uri = 'http://ordbok.uib.no/perl/ordbok.cgi';
-const parser = require('parser');
-let reqOpts = {
-  begge: '+&ordbok=begge',
-};
-
-function OB(opts, callback) {
-  if (!opts.word) {
-    return callback(new Error('Missing required param: word'), null);
-  }
-
-  reqOpts.OPP = opts.word;
-
-  request(uri, { qs: reqOpts }, function (error, response, body) {
-    if (error) {
-      return callback(error, null);
-    }
-
-    parser(body.toString(), function (err, data) {
-      if (err) {
-        return callback(err, null);
-      }
-      return callback(null, data);
-    });
-  });
-}
-
-OB({ word: query }, function (err, data) {
-  if (err) {
-    throw err;
-  }
-  console.log(JSON.stringify(data));
-});
