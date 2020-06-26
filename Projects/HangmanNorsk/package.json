@@ -1,0 +1,22 @@
+{
+  "name": "hangmannorsk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "article-parser": "^4.2.1",
+    "cheerio": "^1.0.0-rc.3",
+    "events": "^3.1.0",
+    "node-fetch": "^2.6.0",
+    "request": "^2.88.2",
+    "string-strip-html": "^4.5.0"
+  }
+}
