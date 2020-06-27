@@ -24,9 +24,12 @@ const { extract } = require('article-parser');
 
 const ordbok = require('./lib/index');
 
+// if advanced search is used - key word is empty
+// TODO: add first form from paradigm to word
 ordbok({ word: 'løsninger' }, function (err, data) {
   if (err) {
     throw err;
   }
-  console.log(JSON.stringify(data));
+  // changed to show object, not a string
+  console.log(data);
 });

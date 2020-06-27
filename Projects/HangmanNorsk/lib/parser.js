@@ -134,7 +134,10 @@ function findWords($, selector, callback) {
         workList.push(tr);
       }
     });
-
+    
+  // valign attribute is not present when trying to look up words with bøyning
+  //if this is a case and workList is empty, look for div with class artikkel
+  //it contains all data needed
   if (workList.length === 0) {
     $(selector)
       .find('div')

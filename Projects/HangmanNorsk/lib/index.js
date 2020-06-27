@@ -1,6 +1,7 @@
 const request = require('request');
 const uri = 'http://ordbok.uib.no/perl/ordbok.cgi';
 const parser = require('./parser');
+// to search for words with bøyning, added advanced search and all types in uri: "&ava=ava&type=alle_former"
 let reqOpts = {
   begge: '+&ordbok=begge&ava=ava&type=alle_former',
 };
