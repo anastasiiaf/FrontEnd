@@ -3,7 +3,7 @@ body {
   background-color: forestgreen;
 }
 
-.container {
+.container-content {
   display: flex;
   position: absolute;
   flex-direction: row;
