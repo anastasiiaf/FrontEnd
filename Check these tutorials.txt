@@ -46,3 +46,7 @@ https://www.freecodecamp.org/news/code-behind-an-led-light/
 
 Encryption algorithms explained
 https://www.freecodecamp.org/news/understanding-encryption-algorithms/
+
+
+https://www.freecodecamp.org/news/how-to-test-and-play-with-web-apis-the-easy-way-with-postman/
+https://www.freecodecamp.org/news/how-does-email-work/
