@@ -50,3 +50,18 @@ https://www.freecodecamp.org/news/understanding-encryption-algorithms/
 
 https://www.freecodecamp.org/news/how-to-test-and-play-with-web-apis-the-easy-way-with-postman/
 https://www.freecodecamp.org/news/how-does-email-work/
+https://www.freecodecamp.org/news/how-to-hack-your-own-cs-degree-for-free/
+https://www.freecodecamp.org/news/6-tools-you-can-use-to-check-for-vulnerabilities-in-node-js/
+https://www.freecodecamp.org/news/front-end-developer-vs-back-end-developer-definition-and-meaning-in-practice/
+https://www.freecodecamp.org/news/arrow-function-javascript-tutorial-how-to-declare-a-js-function-with-the-new-es6-syntax/
+https://www.freecodecamp.org/news/nine-most-common-mistakes-developers-make-in-javascript/
+https://www.freecodecamp.org/news/how-to-build-a-memory-card-game-with-vuejs/
+https://www.freecodecamp.org/news/how-to-deploy-a-full-stack-web-app-with-heroku/
+https://www.freecodecamp.org/news/the-working-developers-guide-to-algorithms/
+https://www.freecodecamp.org/news/how-to-use-flat-file-data-in-a-static-nuxt-app/
+https://www.freecodecamp.org/news/the-complete-javascript-handbook-f26b2c71719c/
+https://www.freecodecamp.org/news/advanced-typescript-types-cheat-sheet-with-examples/
+https://www.freecodecamp.org/news/how-to-persist-a-logged-in-user-in-react/
+https://www.freecodecamp.org/news/create-a-professional-node-express/
+https://www.freecodecamp.org/news/how-to-create-pdf-reports-in-react/
+https://www.freecodecamp.org/news/the-working-developers-guide-to-algorithms/
