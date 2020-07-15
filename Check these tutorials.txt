@@ -1,4 +1,4 @@
-Git and GitHub intro - 1h
+Git and GitHub
 https://www.freecodecamp.org/news/git-and-github-crash-course/
 https://www.freecodecamp.org/news/what-is-github-what-is-git-and-how-to-use-these-developer-tools/
 
