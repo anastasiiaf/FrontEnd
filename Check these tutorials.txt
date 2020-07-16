@@ -2,12 +2,14 @@ Git and GitHub
 https://www.freecodecamp.org/news/git-and-github-crash-course/
 https://www.freecodecamp.org/news/what-is-github-what-is-git-and-how-to-use-these-developer-tools/
 
+
 JS
 https://www.freecodecamp.org/news/the-complete-javascript-handbook-f26b2c71719c/
 https://www.freecodecamp.org/news/javascript-es6-promises-for-beginners-resolve-reject-and-chaining-explained/
 https://www.freecodecamp.org/news/arrow-function-javascript-tutorial-how-to-declare-a-js-function-with-the-new-es6-syntax/
 https://www.freecodecamp.org/news/nine-most-common-mistakes-developers-make-in-javascript/
 https://www.freecodecamp.org/news/the-working-developers-guide-to-algorithms/
+
 
 JS frameworks & Libraries
 https://www.freecodecamp.org/news/how-to-build-a-memory-card-game-with-vuejs/
