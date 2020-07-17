@@ -9,6 +9,8 @@ https://www.freecodecamp.org/news/javascript-es6-promises-for-beginners-resolve-
 https://www.freecodecamp.org/news/arrow-function-javascript-tutorial-how-to-declare-a-js-function-with-the-new-es6-syntax/
 https://www.freecodecamp.org/news/nine-most-common-mistakes-developers-make-in-javascript/
 https://www.freecodecamp.org/news/the-working-developers-guide-to-algorithms/
+https://www.freecodecamp.org/news/debounce-explained-how-to-make-your-javascript-wait-for-your-user-to-finish-typing-2/
+https://www.freecodecamp.org/news/learn-javascript-to-build-apps/
 
 
 JS frameworks & Libraries
@@ -26,12 +28,14 @@ https://www.freecodecamp.org/news/how-to-build-a-chatbot-with-react/
 https://www.freecodecamp.org/news/how-to-create-a-dynamic-rick-and-morty-wiki-web-app-with-next-js/
 https://www.freecodecamp.org/news/how-to-build-a-quiz-app-using-react-and-typescript/
 https://www.freecodecamp.org/news/the-react-graphql-2020-crash-course/
+https://www.freecodecamp.org/news/how-to-build-reusable-html-components-without-component-based-frameworks/
 
 
 NodeJS
 https://www.freecodecamp.org/news/6-tools-you-can-use-to-check-for-vulnerabilities-in-node-js/
 https://www.freecodecamp.org/news/create-a-professional-node-express/
 https://www.freecodecamp.org/news/learn-deno-a-node-js-alternative/
+https://www.freecodecamp.org/news/what-is-npm-a-node-package-manager-tutorial-for-beginners/
 
 
 Testing and Deployment
@@ -58,6 +62,7 @@ https://www.freecodecamp.org/news/how-to-use-flat-file-data-in-a-static-nuxt-app
 https://www.freecodecamp.org/news/advanced-typescript-types-cheat-sheet-with-examples/
 https://www.freecodecamp.org/news/create-a-todo-api-in-deno-written-by-a-guy-coming-from-node/
 https://www.freecodecamp.org/news/responsive-web-design-how-to-make-a-website-look-good-on-phones-and-tablets/
+https://www.freecodecamp.org/news/use-spring-boot-and-java-to-create-a-rest-api-tutorial/
 
 
 
