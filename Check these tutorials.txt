@@ -11,6 +11,9 @@ https://www.freecodecamp.org/news/nine-most-common-mistakes-developers-make-in-j
 https://www.freecodecamp.org/news/the-working-developers-guide-to-algorithms/
 https://www.freecodecamp.org/news/debounce-explained-how-to-make-your-javascript-wait-for-your-user-to-finish-typing-2/
 https://www.freecodecamp.org/news/learn-javascript-to-build-apps/
+https://www.freecodecamp.org/news/javascript-foreach-how-to-loop-through-an-array-in-js/
+https://www.freecodecamp.org/news/javascript-create-object-how-to-define-objects-in-js/
+https://www.freecodecamp.org/news/javascript-es6-promises-for-beginners-resolve-reject-and-chaining-explained/
 
 
 JS frameworks & Libraries
@@ -36,6 +39,7 @@ https://www.freecodecamp.org/news/6-tools-you-can-use-to-check-for-vulnerabiliti
 https://www.freecodecamp.org/news/create-a-professional-node-express/
 https://www.freecodecamp.org/news/learn-deno-a-node-js-alternative/
 https://www.freecodecamp.org/news/what-is-npm-a-node-package-manager-tutorial-for-beginners/
+https://www.freecodecamp.org/news/create-a-professional-node-express/
 
 
 Testing and Deployment
