@@ -1,6 +1,8 @@
 Git and GitHub
 https://www.freecodecamp.org/news/git-and-github-crash-course/
 https://www.freecodecamp.org/news/what-is-github-what-is-git-and-how-to-use-these-developer-tools/
+https://www.freecodecamp.org/news/git-pull-force-how-to-overwrite-local-changes-with-git/
+
 
 
 JS
@@ -70,6 +72,7 @@ https://www.freecodecamp.org/news/create-a-todo-api-in-deno-written-by-a-guy-com
 https://www.freecodecamp.org/news/responsive-web-design-how-to-make-a-website-look-good-on-phones-and-tablets/
 https://www.freecodecamp.org/news/use-spring-boot-and-java-to-create-a-rest-api-tutorial/
 https://www.freecodecamp.org/news/build-a-personal-dev-server-on-a-5-dollar-raspberry-pi/
+https://www.freecodecamp.org/news/what-is-a-lan-local-area-network-explained-in-plain-english/
 
 
 
