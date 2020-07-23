@@ -2,6 +2,7 @@ Git and GitHub
 https://www.freecodecamp.org/news/git-and-github-crash-course/
 https://www.freecodecamp.org/news/what-is-github-what-is-git-and-how-to-use-these-developer-tools/
 https://www.freecodecamp.org/news/git-pull-force-how-to-overwrite-local-changes-with-git/
+https://www.freecodecamp.org/news/how-git-bisect-makes-debugging-easier/
 
 
 
@@ -34,6 +35,7 @@ https://www.freecodecamp.org/news/how-to-create-a-dynamic-rick-and-morty-wiki-we
 https://www.freecodecamp.org/news/how-to-build-a-quiz-app-using-react-and-typescript/
 https://www.freecodecamp.org/news/the-react-graphql-2020-crash-course/
 https://www.freecodecamp.org/news/how-to-build-reusable-html-components-without-component-based-frameworks/
+https://www.freecodecamp.org/news/how-to-create-and-publish-a-vue-component-library/
 
 
 NodeJS
@@ -74,6 +76,9 @@ https://www.freecodecamp.org/news/use-spring-boot-and-java-to-create-a-rest-api-
 https://www.freecodecamp.org/news/build-a-personal-dev-server-on-a-5-dollar-raspberry-pi/
 https://www.freecodecamp.org/news/what-is-a-lan-local-area-network-explained-in-plain-english/
 https://www.freecodecamp.org/news/building-bots/
+https://www.freecodecamp.org/news/how-to-automate-your-life-and-everyday-tasks-with-zapier/
+https://www.freecodecamp.org/news/front-end-developer-vs-back-end-developer-definition-and-meaning-in-practice/
+https://www.freecodecamp.org/news/how-to-create-a-mobile-app-that-outsmarts-the-competitors/
 
 
 
