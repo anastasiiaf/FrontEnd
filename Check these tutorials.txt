@@ -44,6 +44,7 @@ https://www.freecodecamp.org/news/create-a-professional-node-express/
 https://www.freecodecamp.org/news/learn-deno-a-node-js-alternative/
 https://www.freecodecamp.org/news/what-is-npm-a-node-package-manager-tutorial-for-beginners/
 https://www.freecodecamp.org/news/create-a-professional-node-express/
+https://www.freecodecamp.org/news/node-js-debugging/
 
 
 Testing and Deployment
