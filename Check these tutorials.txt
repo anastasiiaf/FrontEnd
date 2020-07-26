@@ -18,6 +18,7 @@ https://www.freecodecamp.org/news/learn-javascript-to-build-apps/
 https://www.freecodecamp.org/news/javascript-foreach-how-to-loop-through-an-array-in-js/
 https://www.freecodecamp.org/news/javascript-create-object-how-to-define-objects-in-js/
 https://www.freecodecamp.org/news/javascript-es6-promises-for-beginners-resolve-reject-and-chaining-explained/
+freecodecamp.org/news/learn-recursion-in-javascript-by-example/
 
 
 JS frameworks & Libraries
@@ -81,6 +82,7 @@ https://www.freecodecamp.org/news/building-bots/
 https://www.freecodecamp.org/news/how-to-automate-your-life-and-everyday-tasks-with-zapier/
 https://www.freecodecamp.org/news/front-end-developer-vs-back-end-developer-definition-and-meaning-in-practice/
 https://www.freecodecamp.org/news/how-to-create-a-mobile-app-that-outsmarts-the-competitors/
+https://www.freecodecamp.org/news/how-to-secure-mobile-apps/
 
 
 
