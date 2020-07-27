@@ -19,6 +19,7 @@ https://www.freecodecamp.org/news/javascript-foreach-how-to-loop-through-an-arra
 https://www.freecodecamp.org/news/javascript-create-object-how-to-define-objects-in-js/
 https://www.freecodecamp.org/news/javascript-es6-promises-for-beginners-resolve-reject-and-chaining-explained/
 freecodecamp.org/news/learn-recursion-in-javascript-by-example/
+https://www.freecodecamp.org/news/8-essential-graph-algorithms-in-javascript/
 
 
 JS frameworks & Libraries
@@ -47,6 +48,7 @@ https://www.freecodecamp.org/news/learn-deno-a-node-js-alternative/
 https://www.freecodecamp.org/news/what-is-npm-a-node-package-manager-tutorial-for-beginners/
 https://www.freecodecamp.org/news/create-a-professional-node-express/
 https://www.freecodecamp.org/news/node-js-debugging/
+https://www.freecodecamp.org/news/6-tools-you-can-use-to-check-for-vulnerabilities-in-node-js/
 
 
 Testing and Deployment
