@@ -87,5 +87,8 @@ https://www.freecodecamp.org/news/how-to-create-a-mobile-app-that-outsmarts-the-
 https://www.freecodecamp.org/news/how-to-secure-mobile-apps/
 
 
+https://www.freecodecamp.org/news/build-a-sudoku-java-desktop-application/
+
+
 
 
