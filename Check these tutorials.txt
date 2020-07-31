@@ -89,6 +89,9 @@ https://www.freecodecamp.org/news/front-end-developer-vs-back-end-developer-defi
 https://www.freecodecamp.org/news/how-to-create-a-mobile-app-that-outsmarts-the-competitors/
 https://www.freecodecamp.org/news/how-to-secure-mobile-apps/
 https://www.freecodecamp.org/news/make-it-blink-html-tutorial-how-to-use-the-blink-tag-with-code-examples/
+https://www.freecodecamp.org/news/numbering-with-css-counters/
+https://www.freecodecamp.org/news/bootstrap-5-vanilla-js-tutorial/
+https://www.freecodecamp.org/news/how-to-build-a-markdown-previewer-with-react-js/
 
 
 
