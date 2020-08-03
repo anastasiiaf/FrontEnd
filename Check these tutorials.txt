@@ -93,6 +93,7 @@ https://www.freecodecamp.org/news/make-it-blink-html-tutorial-how-to-use-the-bli
 https://www.freecodecamp.org/news/numbering-with-css-counters/
 https://www.freecodecamp.org/news/bootstrap-5-vanilla-js-tutorial/
 https://www.freecodecamp.org/news/how-to-build-a-markdown-previewer-with-react-js/
+https://www.freecodecamp.org/news/get-started-with-tailwindcss/
 
 
 
