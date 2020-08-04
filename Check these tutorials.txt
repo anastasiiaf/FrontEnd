@@ -21,6 +21,7 @@ https://www.freecodecamp.org/news/javascript-create-object-how-to-define-objects
 https://www.freecodecamp.org/news/javascript-es6-promises-for-beginners-resolve-reject-and-chaining-explained/
 freecodecamp.org/news/learn-recursion-in-javascript-by-example/
 https://www.freecodecamp.org/news/8-essential-graph-algorithms-in-javascript/
+https://www.freecodecamp.org/news/debounce-javascript-tutorial-how-to-make-your-js-wait-up/
 
 
 
@@ -58,6 +59,7 @@ Testing and Deployment
 https://www.freecodecamp.org/news/how-to-test-and-play-with-web-apis-the-easy-way-with-postman/
 https://www.freecodecamp.org/news/how-to-deploy-a-full-stack-web-app-with-heroku/
 https://www.freecodecamp.org/news/plan-code-and-deploy-a-startup-in-2-hours/
+https://www.freecodecamp.org/news/developing-and-deploying-micro-frontends-with-single-spa/
 
 
 Docker
@@ -94,6 +96,7 @@ https://www.freecodecamp.org/news/numbering-with-css-counters/
 https://www.freecodecamp.org/news/bootstrap-5-vanilla-js-tutorial/
 https://www.freecodecamp.org/news/how-to-build-a-markdown-previewer-with-react-js/
 https://www.freecodecamp.org/news/get-started-with-tailwindcss/
+https://www.freecodecamp.org/news/how-to-add-screenshot-testing-with-cypress-to-your-project/
 
 
 
