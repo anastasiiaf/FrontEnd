@@ -44,6 +44,7 @@ https://www.freecodecamp.org/news/how-to-build-reusable-html-components-without-
 https://www.freecodecamp.org/news/how-to-create-and-publish-a-vue-component-library/
 https://www.freecodecamp.org/news/how-to-create-a-reusable-fade-in-animation-component-in-react-with-gsap/
 https://www.freecodecamp.org/news/how-to-set-up-https-locally-with-create-react-app/
+https://www.freecodecamp.org/news/10-javascript-libraries-you-should-try/
 
 
 NodeJS
@@ -53,7 +54,7 @@ https://www.freecodecamp.org/news/learn-deno-a-node-js-alternative/
 https://www.freecodecamp.org/news/what-is-npm-a-node-package-manager-tutorial-for-beginners/
 https://www.freecodecamp.org/news/create-a-professional-node-express/
 https://www.freecodecamp.org/news/node-js-debugging/
-https://www.freecodecamp.org/news/6-tools-you-can-use-to-check-for-vulnerabilities-in-node-js/
+https://www.freecodecamp.org/news/a-hands-on-guide-to-event-loop-child-process-and-worker-threads-in-node-js/
 
 
 Testing and Deployment
