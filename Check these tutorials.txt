@@ -48,6 +48,7 @@ https://www.freecodecamp.org/news/how-to-set-up-https-locally-with-create-react-
 https://www.freecodecamp.org/news/10-javascript-libraries-you-should-try/
 https://www.freecodecamp.org/news/how-to-add-a-youtube-playlist-to-a-nextjs-react-app-with-the-youtube-api/
 https://www.freecodecamp.org/news/react-typescript-how-to-set-up-types-on-hooks/
+https://www.freecodecamp.org/news/react-beginner-project-tutorial-temperature-control-app/
 
 
 
@@ -107,6 +108,7 @@ https://www.freecodecamp.org/news/get-started-with-tailwindcss/
 https://www.freecodecamp.org/news/how-to-add-screenshot-testing-with-cypress-to-your-project/
 https://www.freecodecamp.org/news/access-control-allow-origin-header-explained/
 https://www.freecodecamp.org/news/what-is-a-scrum-master-the-agile-role-and-responsibilities-explained/
+https://www.freecodecamp.org/news/how-to-build-your-first-saas/
 
 
 
