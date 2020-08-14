@@ -6,6 +6,7 @@ https://www.freecodecamp.org/news/git-pull-force-how-to-overwrite-local-changes-
 https://www.freecodecamp.org/news/how-git-bisect-makes-debugging-easier/
 https://www.freecodecamp.org/news/what-are-github-actions-and-how-can-you-automate-tests-and-slack-notifications/
 https://www.freecodecamp.org/news/go-automate-your-github-profile-readme/
+https://www.freecodecamp.org/news/how-to-use-github-actions-to-call-webhooks/
 
 
 
@@ -51,6 +52,8 @@ https://www.freecodecamp.org/news/how-to-add-a-youtube-playlist-to-a-nextjs-reac
 https://www.freecodecamp.org/news/react-typescript-how-to-set-up-types-on-hooks/
 https://www.freecodecamp.org/news/react-beginner-project-tutorial-temperature-control-app/
 https://www.freecodecamp.org/news/why-you-should-learn-next-js-as-a-react-developer/
+https://www.freecodecamp.org/news/generate-qr-codes-in-angular-10/
+https://www.freecodecamp.org/news/8-reactjs-project-ideas-to-start-learning-by-doing/
 
 
 
