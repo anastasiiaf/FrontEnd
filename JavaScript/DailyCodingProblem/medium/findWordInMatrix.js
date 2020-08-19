@@ -8,7 +8,8 @@ The same letter cell may not be used more than once.
 function exists(board, word) {
   let firstLetter = word[0];
 
-  console.log(findFirstLetterPosition(board, firstLetter));
+  let firstLetterPositions = findFirstLetterPosition(board, firstLetter);
+
   return board.length;
 }
 
@@ -34,6 +35,13 @@ function findFirstLetterPosition(board, firstLetter) {
     }
   }
   return pos;
+}
+
+function searchWord(word, board, firstLetterPositions) {
+  for (let i = 0; i < firstLetterPositions.length; i++) {
+    let row = firstLetterPositions[i][0];
+    let column = firstLetterPositions[i][1];
+  }
 }
 
 let board = [
