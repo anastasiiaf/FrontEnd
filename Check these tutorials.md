@@ -1,5 +1,5 @@
 
-##Git and GitHub
+## Git and GitHub
 - https://www.freecodecamp.org/news/git-and-github-crash-course/
 - https://www.freecodecamp.org/news/what-is-github-what-is-git-and-how-to-use-these-developer-tools/
 - https://www.freecodecamp.org/news/git-pull-force-how-to-overwrite-local-changes-with-git/
@@ -10,7 +10,7 @@
 
 
 
-##JS
+## JS
 - https://www.freecodecamp.org/news/the-complete-javascript-handbook-f26b2c71719c/
 - https://www.freecodecamp.org/news/javascript-es6-promises-for-beginners-resolve-reject-and-chaining-explained/
 - https://www.freecodecamp.org/news/arrow-function-javascript-tutorial-how-to-declare-a-js-function-with-the-new-es6-syntax/
@@ -28,7 +28,7 @@
 
 
 
-##JS frameworks & Libraries
+## JS frameworks & Libraries
 - https://www.freecodecamp.org/news/how-to-build-a-memory-card-game-with-vuejs/
 - https://www.freecodecamp.org/news/how-to-persist-a-logged-in-user-in-react/
 - https://www.freecodecamp.org/news/how-to-create-pdf-reports-in-react/
@@ -57,7 +57,7 @@
 
 
 
-##NodeJS
+## NodeJS
 - https://www.freecodecamp.org/news/6-tools-you-can-use-to-check-for-vulnerabilities-in-node-js/
 - https://www.freecodecamp.org/news/create-a-professional-node-express/
 - https://www.freecodecamp.org/news/learn-deno-a-node-js-alternative/
@@ -68,7 +68,7 @@
 
 
 
-##Testing and Deployment
+## Testing and Deployment
 - https://www.freecodecamp.org/news/how-to-test-and-play-with-web-apis-the-easy-way-with-postman/
 - https://www.freecodecamp.org/news/how-to-deploy-a-full-stack-web-app-with-heroku/
 - https://www.freecodecamp.org/news/plan-code-and-deploy-a-startup-in-2-hours/
@@ -76,12 +76,12 @@
 
 
 
-##Docker
+## Docker
 - https://www.freecodecamp.org/news/the-docker-handbook/
 
 
 
-##CS
+## CS
 - https://www.freecodecamp.org/news/how-does-email-work/
 - https://www.freecodecamp.org/news/how-to-hack-your-own-cs-degree-for-free/
 - https://www.freecodecamp.org/news/front-end-developer-vs-back-end-developer-definition-and-meaning-in-practice/
@@ -92,7 +92,7 @@
 
 
 
-##Other
+## Other
 - https://www.freecodecamp.org/news/how-to-use-flat-file-data-in-a-static-nuxt-app/
 - https://www.freecodecamp.org/news/advanced-typescript-types-cheat-sheet-with-examples/
 - https://www.freecodecamp.org/news/create-a-todo-api-in-deno-written-by-a-guy-coming-from-node/
@@ -119,7 +119,7 @@
 
 
 
-##Java
+## Java
 - https://www.freecodecamp.org/news/build-a-sudoku-java-desktop-application/
 - https://www.freecodecamp.org/news/kotlin-vs-java-which-language-to-learn-in-2020/
 
