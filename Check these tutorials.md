@@ -1,12 +1,12 @@
 
 ## Git and GitHub
-- https://www.freecodecamp.org/news/git-and-github-crash-course/
-- https://www.freecodecamp.org/news/what-is-github-what-is-git-and-how-to-use-these-developer-tools/
-- https://www.freecodecamp.org/news/git-pull-force-how-to-overwrite-local-changes-with-git/
-- https://www.freecodecamp.org/news/how-git-bisect-makes-debugging-easier/
-- https://www.freecodecamp.org/news/what-are-github-actions-and-how-can-you-automate-tests-and-slack-notifications/
-- https://www.freecodecamp.org/news/go-automate-your-github-profile-readme/
-- https://www.freecodecamp.org/news/how-to-use-github-actions-to-call-webhooks/
+- https://www.freecodecamp.org/news/git-and-github-crash-course/      **video (1h)**
+- https://www.freecodecamp.org/news/what-is-github-what-is-git-and-how-to-use-these-developer-tools/      **article (short)**
+- https://www.freecodecamp.org/news/git-pull-force-how-to-overwrite-local-changes-with-git/     **article (short)**
+- https://www.freecodecamp.org/news/how-git-bisect-makes-debugging-easier/      **article (short)**
+- https://www.freecodecamp.org/news/what-are-github-actions-and-how-can-you-automate-tests-and-slack-notifications/     **article (long)**
+- https://www.freecodecamp.org/news/go-automate-your-github-profile-readme/     **article (short)**
+- https://www.freecodecamp.org/news/how-to-use-github-actions-to-call-webhooks/     **article (short)**
 
 
 
@@ -24,7 +24,6 @@
 - https://www.freecodecamp.org/news/learn-recursion-in-javascript-by-example/
 - https://www.freecodecamp.org/news/8-essential-graph-algorithms-in-javascript/
 - https://www.freecodecamp.org/news/debounce-javascript-tutorial-how-to-make-your-js-wait-up/
-- https://www.freecodecamp.org/news/learn-javascript-to-build-apps/
 
 
 
