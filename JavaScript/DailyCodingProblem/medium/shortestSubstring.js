@@ -13,7 +13,6 @@ function shortestSubstring(word, substr) {
     let prevPosition = 0;
     while (isInWord) {
       let ind = word.indexOf(substr[i], prevPosition);
-      console.log(i);
       if (ind > -1) {
         arr.push(ind);
         prevPosition = ind + 1;
@@ -29,6 +28,8 @@ function shortestSubstring(word, substr) {
       }
     }
   }
+
+  for (let j = 0; j < substringIndeces.length; j++) {}
 
   console.log(substringIndeces);
 }
