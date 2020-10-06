@@ -52,6 +52,7 @@
 - https://www.freecodecamp.org/news/why-you-should-learn-next-js-as-a-react-developer/      **article (short)**
 - https://www.freecodecamp.org/news/generate-qr-codes-in-angular-10/      **article (short)**
 - https://www.freecodecamp.org/news/8-reactjs-project-ideas-to-start-learning-by-doing/     **article (long)**
+- https://www.freecodecamp.org/news/react-10-hour-course/    **video (10h)**
 
 
 
